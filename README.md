@@ -1,4 +1,4 @@
-# Emergency_response_time
+# emergency-response-time
 
 We will analyze the effectiveness of the Portland emergency response system by studying response times across different departments
 
