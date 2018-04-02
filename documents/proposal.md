@@ -21,6 +21,8 @@ What does reponse time strictly means? Hold time or time between call and arriva
 * Portland's 911 Hold Times Are Worse Than The City Reported:
 https://www.opb.org/news/article/portland-oregon-911-hold-times-report/ 
 
+* [Mayor Takes Over Emergency Communications](http://www.kgw.com/article/news/politics/after-damning-911-report-mayor-takes-over-bureau-of-emergency-communications/449425590)
+
 ### Contacts
 
 * [Portland Fire and Rescue](https://www.portlandoregon.gov/fire/)
