@@ -23,6 +23,8 @@ What does a good metric indicate? Shorter response time or less duplications?
 * Portland's 911 Hold Times Are Worse Than The City Reported:
 https://www.opb.org/news/article/portland-oregon-911-hold-times-report/ 
 
+* [Mayor Takes Over Emergency Communications](http://www.kgw.com/article/news/politics/after-damning-911-report-mayor-takes-over-bureau-of-emergency-communications/449425590)
+
 ### Contacts
 
 * [Portland Fire and Rescue](https://www.portlandoregon.gov/fire/)
