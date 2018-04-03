@@ -12,6 +12,8 @@ What are the confounding variables that affect response time?
 
 What does reponse time strictly means? Hold time or time between call and arrival?
 
+What does a good metric indicate? Shorter response time or less duplications?
+
 ### Relevant work
 
 * [Portland Police Bureau Avg. High Priority Response Times, 2011](https://www.portlandoregon.gov/cbo/article/394821)
