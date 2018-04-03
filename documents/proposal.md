@@ -6,11 +6,11 @@ We will be analyzing the effectiveness of the Portland emergency response system
 
 ### Questions
 
-Does response time correlate with health outcomes? If so, how strongly is the correlation?
+Does response time correlate with health outcomes? If so, how strong is the correlation?
 
 What are the confounding variables that affect response time?
 
-What does reponse time strictly means? Hold time or time between call and arrival?
+What does reponse time strictly mean? Hold time or time between call and arrival?
 
 What does a good metric indicate? Shorter response time or less duplications?
 
@@ -20,8 +20,7 @@ What does a good metric indicate? Shorter response time or less duplications?
 
 * [Portland Fire & Rescue Avg. Response Times, 2012-2013](https://www.portlandoregon.gov/cbo/article/433203)
 
-* Portland's 911 Hold Times Are Worse Than The City Reported:
-https://www.opb.org/news/article/portland-oregon-911-hold-times-report/ 
+* [Portland's 911 Hold Times Are Worse Than The City Reported](https://www.opb.org/news/article/portland-oregon-911-hold-times-report/) 
 
 * [Mayor Takes Over Emergency Communications](http://www.kgw.com/article/news/politics/after-damning-911-report-mayor-takes-over-bureau-of-emergency-communications/449425590)
 
@@ -33,24 +32,25 @@ https://www.opb.org/news/article/portland-oregon-911-hold-times-report/
 
 ### Describe the data
 
-One observation is one call, wait time, health outcome, location
-
-
 #### Source with citation
 #### Data structure / size
 #### Observational unit
+
+Ideally, each observation would be one emergency call
+
 #### Types of variables
+
+We hope to have: wait time (numeric), health outcome (categorical), location (categorical)
+
 #### Confidentiality/privacy concerns
 
+Confidentiality is extremely relevant to this particular topic.  The data will probably include phone numbers or addresses, which might be connected to health outcomes.  It will be very important to protect the privacy of those recorded in the data set.
 
 ### Vision for deliverable
-
-The project deliverable will most likely be a whitepaper containing informative maps of Portland relating to the emergency response system.  It may end up being a Shiny app, however.
 
 #### Visualizations
 #### Models
 #### Data
 #### Format
-White paper (Rmd document)
-Software (R package)
-Website (Shiny App)
+
+The project deliverable will most likely be a whitepaper containing informative maps of Portland relating to the emergency response system.  It may end up being a Shiny app, however.
