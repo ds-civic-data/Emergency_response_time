@@ -1,10 +1,22 @@
 ---
 title: "Miscellaneous"
-output: gihub_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+install.packages("rjson",repos="https://cran.r-project.org/web/packages/rjson/index.html")
+library("rjson")
 ```
 
 * [Portland Police Bureau](https://www.portlandoregon.gov/police/)
+
+```{r}
+# Testing out loading a json file
+
+json_file <- "http://service.civicpdx.org/emergency/incidents/"
+json_df <- fromJSON(file = json_file)
+
+head(json_df)
+```

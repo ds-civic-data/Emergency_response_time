@@ -10,6 +10,4 @@ Miranda Rintoul, Lirui Jiao
 
 3/29: Project proposal
 
-4/4: Meet with Fire Dept
-
 5/10: Presented at symposium
