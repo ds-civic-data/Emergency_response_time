@@ -6,8 +6,7 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
-install.packages("rjson",repos="https://cran.r-project.org/web/packages/rjson/index.html")
-library("rjson")
+library(jsonlite)
 ```
 
 * [Portland Police Bureau](https://www.portlandoregon.gov/police/)
@@ -15,8 +14,9 @@ library("rjson")
 ```{r}
 # Testing out loading a json file
 
-json_file <- "http://service.civicpdx.org/emergency/incidents/"
-json_df <- fromJSON(file = json_file)
+json_df <- fromJSON("http://service.civicpdx.org/emergency/incidents/")
 
+str(json_df)
+glimpse(json_df)
 head(json_df)
 ```
