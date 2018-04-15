@@ -2,7 +2,7 @@
 
 ### Theme
 
-We will be studying Portland street trees, with a focus on nuisance and non-native trees.  We hope to compare the benefits and downsides of having trees that are not native to the Portland ecosystem.
+We will be studying Portland street trees, concentrating on nuisance and non-native trees.  We hope to compare the benefits and downsides of having trees that are not native to the Portland ecosystem.
 
 
 ### Questions
