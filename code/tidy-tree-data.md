@@ -34,7 +34,8 @@ trees <- trees %>%
 
 # reorder and rename cols
 trees <- trees %>%
-  select(X,Y,Year_Plant,Common_nam,Size,canopy_rad,canopy_area,native,nuisance,edible,Family,Genus_spec,Origin,Functional)
+  select(X,Y,Year_Plant,Common_nam,Size,canopy_rad,canopy_area,native,
+         nuisance,edible,Family,Genus_spec,Origin,Functional)
 names(trees) <- c("xcoord","ycoord","year","name","size","canopy_rad","canopy_area",
                   "native","nuisance","edible","family","species","origin",
                   "funtion")
