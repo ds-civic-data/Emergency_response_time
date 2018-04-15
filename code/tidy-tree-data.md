@@ -10,20 +10,21 @@ trees <- read.csv("~/emergency-response-time/data-raw/tree-data-13april.csv")
 
 ``` r
 trees <- trees %>%
-  select(X,Y,Year_Plant,Family,Common_nam,Genus_spec,Functional,Size,Native,Edible,Nuisance,Origin)
+  select(X,Y,Year_Plant,Family,Common_nam,Genus_spec,Functional,
+         Size,Native,Edible,Nuisance,Origin)
 ```
 
 ``` r
 # transform data
 trees <- trees %>%
-# filter out trees with no native val, make better "native"
+# filter out trees with no native val, make better "native" col
   filter(Native %in% c("Yes","No")) %>%
   mutate(native=ifelse(Native=="Yes",T,F)) %>%
   select(-Native) %>%
-# mutate better "nuisance"
+# mutate better "nuisance" col
   mutate(nuisance=ifelse(Nuisance!="",T,F)) %>%
   select(-Nuisance) %>% 
-# mutate better "edible"
+# mutate better "edible" col
   mutate(edible=ifelse(Edible=="Yes - fruit","fruit",
          ifelse(Edible=="Yes - nuts","nuts","none"))) %>%
   select(-Edible) %>%
