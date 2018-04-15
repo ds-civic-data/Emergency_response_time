@@ -2,7 +2,7 @@
 
 ### Theme
 
-We will be analyzing the effectiveness of the Portland emergency response system by studying response times.  Could there be a better metric for this?
+We will be analyzing the effectiveness of the Portland emergency response system by studying response times. Could there be a better metric for this?
 
 ### Questions
 
