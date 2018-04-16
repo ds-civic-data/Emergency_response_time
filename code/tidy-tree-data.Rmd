@@ -46,11 +46,11 @@ trees <- trees %>%
          nuisance,edible,Family,Genus_spec,Origin,Functional)
 names(trees) <- c("xcoord","ycoord","year","name","size","canopy_rad","canopy_area",
                   "native","nuisance","edible","family","species","origin",
-                  "funtion")
+                  "funct")
 ```
 
 ```{r}
 # export new tidy as csv
 setwd("~/emergency-response-time/data")
-write.csv(trees, "tree_tidy.csv")
+write.csv(trees, "tree_tidy.csv",row.names=F)
 ```
