@@ -28,7 +28,7 @@ str(trees)
     ##  $ family     : Factor w/ 41 levels "Altingiaceae",..: 16 10 10 10 41 16 16 36 36 36 ...
     ##  $ species    : Factor w/ 179 levels "Abies grandis",..: 139 165 165 165 173 139 139 8 8 8 ...
     ##  $ origin     : Factor w/ 133 levels "","Africa - Atlas Mountains of Morocco and Algeria",..: 126 73 73 73 1 126 126 112 112 112 ...
-    ##  $ funtion    : Factor w/ 4 levels "BD","BE","CD",..: 1 4 4 4 1 1 1 1 1 1 ...
+    ##  $ funct      : Factor w/ 4 levels "BD","BE","CD",..: 1 4 4 4 1 1 1 1 1 1 ...
 
 ``` r
 nrow(trees)
@@ -73,7 +73,9 @@ table(trees$size)
 table(trees$funct)
 ```
 
-    ## < table of extent 0 >
+    ## 
+    ##    BD    BE    CD    CE 
+    ## 49913  1084   186  1490
 
 Only a small number of trees, about 1500, are considered to be nuisance trees.
 
