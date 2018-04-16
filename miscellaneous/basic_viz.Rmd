@@ -1,0 +1,80 @@
+---
+title: "Basic questions"
+author: "Miranda Rintoul"
+date: "4/16/2018"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r,cache=T}
+# initial tidy dataset - still needs some work
+trees <- read.csv("~/emergency-response-time/data/tree_tidy.csv")
+```
+
+#### Basic stuff
+
+```{r}
+str(trees)
+nrow(trees)
+table(trees$native)
+table(trees$nuisance)
+table(trees$edible)
+table(trees$size)
+# still need to figure out what the "function" col refers to
+table(trees$funct)
+```
+
+Only a small number of trees, about 1500, are considered to be nuisance trees.
+
+#### Tables
+
+```{r}
+# native vs nuisance
+table(trees$native, trees$nuisance)
+# native vs edible
+table(trees$native, trees$edible)
+# native vs size
+table(trees$native, trees$size)
+# nuisance vs size
+table(trees$nuisance, trees$size)
+```
+
+Interestingly, all nuisance trees are either large or medium.
+
+#### Visuals
+
+```{r}
+#trees by year, native vs non native
+trees %>%
+  filter(year<2018) %>%
+  ggplot(aes(x=year,fill=native)) + 
+    geom_bar()
+```
+
+It seems like the number of native plantings has increased in recent years.
+
+```{r}
+# native trees and canopy cover
+trees %>%
+  group_by(native) %>%
+  summarize(cover=sum(canopy_area)) %>%
+  ggplot(aes(x=native,y=cover)) +
+    geom_col()
+
+# nuisance trees and canopy cover
+trees %>%
+  group_by(nuisance) %>%
+  summarize(cover=sum(canopy_area)) %>%
+  ggplot(aes(x=nuisance,y=cover)) +
+    geom_col()
+
+```
+
+
+
+
+
