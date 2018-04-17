@@ -14,7 +14,7 @@ trees <- read.csv("~/emergency-response-time/data/tree_tidy.csv")
 str(trees)
 ```
 
-    ## 'data.frame':    52673 obs. of  14 variables:
+    ## 'data.frame':    52673 obs. of  15 variables:
     ##  $ xcoord     : num  7653423 7653423 7653423 7653423 7653691 ...
     ##  $ ycoord     : num  691920 691920 691920 691920 692065 ...
     ##  $ year       : int  2008 2008 2008 2008 2008 2008 2008 2008 2008 2008 ...
@@ -29,6 +29,7 @@ str(trees)
     ##  $ species    : Factor w/ 179 levels "Abies grandis",..: 139 165 165 165 173 139 139 8 8 8 ...
     ##  $ origin     : Factor w/ 133 levels "","Africa - Atlas Mountains of Morocco and Algeria",..: 126 73 73 73 1 126 126 112 112 112 ...
     ##  $ funct      : Factor w/ 4 levels "BD","BE","CD",..: 1 4 4 4 1 1 1 1 1 1 ...
+    ##  $ group      : Factor w/ 4 levels "contractor","park",..: 4 4 4 4 4 4 4 4 4 4 ...
 
 ``` r
 nrow(trees)
@@ -158,3 +159,25 @@ trees %>%
 ```
 
 ![](basic_viz_files/figure-markdown_github/unnamed-chunk-5-2.png)
+
+``` r
+# plantings by group
+trees %>%
+  filter(year<2018) %>%
+  ggplot(aes(x=year)) +
+  geom_bar() +
+  facet_wrap(~ group)
+```
+
+![](basic_viz_files/figure-markdown_github/unnamed-chunk-5-3.png)
+
+``` r
+# plantings by functional group
+trees %>%
+  filter(year<2018) %>%
+  ggplot(aes(x=year)) +
+  geom_bar() +
+  facet_wrap(~ funct)
+```
+
+![](basic_viz_files/figure-markdown_github/unnamed-chunk-5-4.png)

@@ -72,6 +72,19 @@ trees %>%
   ggplot(aes(x=nuisance,y=cover)) +
     geom_col()
 
+# plantings by group
+trees %>%
+  filter(year<2018) %>%
+  ggplot(aes(x=year)) +
+  geom_bar() +
+  facet_wrap(~ group)
+
+# plantings by functional group
+trees %>%
+  filter(year<2018) %>%
+  ggplot(aes(x=year)) +
+  geom_bar() +
+  facet_wrap(~ funct)
 ```
 
 
