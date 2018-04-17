@@ -18,7 +18,7 @@ trees <- read.csv("~/emergency-response-time/data-raw/tree-data-13april.csv")
 ```{r,cache=T}
 trees <- trees %>%
   select(X,Y,Year_Plant,Family,Common_nam,Genus_spec,Functional,
-         Size,Native,Edible,Nuisance,Origin)
+         Size,Native,Edible,Nuisance,Origin,Planting_O)
 ```
 
 ```{r}
@@ -28,6 +28,11 @@ trees <- trees %>%
   filter(Native %in% c("Yes","No")) %>%
   mutate(native=ifelse(Native=="Yes",T,F)) %>%
   select(-Native) %>%
+# mutate better "group" col
+  mutate(group = ifelse(Planting_O=="BES Contractor", "contractor",
+                        ifelse(Planting_O=="FoTStreet","street",
+                               ifelse(Planting_O=="FoTYard","yard","park")))) %>%
+  select(-Planting_O) %>%
 # mutate better "nuisance" col
   mutate(nuisance=ifelse(Nuisance!="",T,F)) %>%
   select(-Nuisance) %>% 
@@ -43,10 +48,10 @@ trees <- trees %>%
 # reorder and rename cols
 trees <- trees %>%
   select(X,Y,Year_Plant,Common_nam,Size,canopy_rad,canopy_area,native,
-         nuisance,edible,Family,Genus_spec,Origin,Functional)
+         nuisance,edible,Family,Genus_spec,Origin,Functional,group)
 names(trees) <- c("xcoord","ycoord","year","name","size","canopy_rad","canopy_area",
                   "native","nuisance","edible","family","species","origin",
-                  "funct")
+                  "funct","group")
 ```
 
 ```{r}
