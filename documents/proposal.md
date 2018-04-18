@@ -42,7 +42,7 @@ Each observational unit is one planting of a Portland street tree.
 | Desc | Column | Type | Range/Levels |
 |-|:-:|:-:|:-:|
 | Latitude | xcoord | num | 7617163-7694346 |
-| Longitude | ycoord | num | 656186.7 729717.2 |
+| Longitude | ycoord | num | 656186.7-729717.2 |
 | Planting year | year | int | 1989-2018 |
 | Common name | name | factor | - |
 | Canopy size | size | factor | S, M, L |
