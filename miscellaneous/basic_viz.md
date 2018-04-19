@@ -181,3 +181,15 @@ trees %>%
 ```
 
 ![](basic_viz_files/figure-markdown_github/unnamed-chunk-5-4.png)
+
+``` r
+# tree diversity
+trees %>%
+  filter(year < 2018) %>%
+  group_by(year) %>%
+  summarize(spec_num = n_distinct(species)) %>%
+  ggplot(aes(x=year,y=spec_num)) + 
+  geom_col()
+```
+
+![](basic_viz_files/figure-markdown_github/unnamed-chunk-5-5.png)

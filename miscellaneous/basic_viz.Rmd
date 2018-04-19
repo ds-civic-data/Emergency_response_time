@@ -85,6 +85,14 @@ trees %>%
   ggplot(aes(x=year)) +
   geom_bar() +
   facet_wrap(~ funct)
+
+# tree diversity
+trees %>%
+  filter(year < 2018) %>%
+  group_by(year) %>%
+  summarize(spec_num = n_distinct(species)) %>%
+  ggplot(aes(x=year,y=spec_num)) + 
+  geom_col()
 ```
 
 
