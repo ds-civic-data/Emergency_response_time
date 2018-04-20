@@ -1,6 +1,6 @@
 Basic questions
 ================
-Miranda Rintoul
+------------------------------------------------------------------------
 4/16/2018
 
 ``` r
@@ -14,20 +14,20 @@ trees <- read.csv("~/emergency-response-time/data/tree_tidy.csv")
 str(trees)
 ```
 
-    ## 'data.frame':    52673 obs. of  15 variables:
-    ##  $ xcoord     : num  7653423 7653423 7653423 7653423 7653691 ...
-    ##  $ ycoord     : num  691920 691920 691920 691920 692065 ...
+    ## 'data.frame':    41959 obs. of  15 variables:
+    ##  $ xcoord     : num  7653423 7653423 7653423 7653423 7654347 ...
+    ##  $ ycoord     : num  691920 691920 691920 691920 693381 ...
     ##  $ year       : int  2008 2008 2008 2008 2008 2008 2008 2008 2008 2008 ...
-    ##  $ name       : Factor w/ 179 levels "Alaska yellow-cedar",..: 145 174 174 174 56 145 145 16 16 16 ...
+    ##  $ name       : Factor w/ 147 levels "Alaska yellow-cedar",..: 119 143 143 143 119 119 14 14 14 14 ...
     ##  $ size       : Factor w/ 3 levels "L","M","S": 1 1 1 1 1 1 1 1 1 1 ...
     ##  $ canopy_rad : int  60 60 60 60 60 60 60 60 60 60 ...
     ##  $ canopy_area: num  11310 11310 11310 11310 11310 ...
     ##  $ native     : logi  FALSE TRUE TRUE TRUE FALSE FALSE ...
     ##  $ nuisance   : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
     ##  $ edible     : Factor w/ 3 levels "fruit","none",..: 2 2 2 2 2 2 2 2 2 2 ...
-    ##  $ family     : Factor w/ 41 levels "Altingiaceae",..: 16 10 10 10 41 16 16 36 36 36 ...
-    ##  $ species    : Factor w/ 179 levels "Abies grandis",..: 139 165 165 165 173 139 139 8 8 8 ...
-    ##  $ origin     : Factor w/ 133 levels "","Africa - Atlas Mountains of Morocco and Algeria",..: 126 73 73 73 1 126 126 112 112 112 ...
+    ##  $ family     : Factor w/ 39 levels "Altingiaceae",..: 14 10 10 10 14 14 34 34 34 34 ...
+    ##  $ species    : Factor w/ 147 levels "Abies grandis",..: 113 137 137 137 113 113 8 8 8 8 ...
+    ##  $ origin     : Factor w/ 6 levels "Africa","Asia",..: 5 5 5 5 5 5 5 5 5 5 ...
     ##  $ funct      : Factor w/ 4 levels "BD","BE","CD",..: 1 4 4 4 1 1 1 1 1 1 ...
     ##  $ group      : Factor w/ 4 levels "contractor","park",..: 4 4 4 4 4 4 4 4 4 4 ...
 
@@ -35,7 +35,7 @@ str(trees)
 nrow(trees)
 ```
 
-    ## [1] 52673
+    ## [1] 41959
 
 ``` r
 table(trees$native)
@@ -43,7 +43,7 @@ table(trees$native)
 
     ## 
     ## FALSE  TRUE 
-    ## 47966  4707
+    ## 37286  4673
 
 ``` r
 table(trees$nuisance)
@@ -51,7 +51,7 @@ table(trees$nuisance)
 
     ## 
     ## FALSE  TRUE 
-    ## 51157  1516
+    ## 40443  1516
 
 ``` r
 table(trees$edible)
@@ -59,7 +59,7 @@ table(trees$edible)
 
     ## 
     ## fruit  none  nuts 
-    ##  3695 48007   971
+    ##  2035 38953   971
 
 ``` r
 table(trees$size)
@@ -67,16 +67,25 @@ table(trees$size)
 
     ## 
     ##     L     M     S 
-    ## 11002 16791 24880
+    ##  9157 13856 18946
 
 ``` r
-# still need to figure out what the "function" col refers to
+table(trees$origin)
+```
+
+    ## 
+    ##        Africa          Asia     Australia        Europe North America 
+    ##            11         18885             1          5511         17485 
+    ## South America 
+    ##            66
+
+``` r
 table(trees$funct)
 ```
 
     ## 
     ##    BD    BE    CD    CE 
-    ## 49913  1084   186  1490
+    ## 39272  1084   186  1417
 
 Only a small number of trees, about 1500, are considered to be nuisance trees.
 
@@ -89,8 +98,8 @@ table(trees$native, trees$nuisance)
 
     ##        
     ##         FALSE  TRUE
-    ##   FALSE 46450  1516
-    ##   TRUE   4707     0
+    ##   FALSE 35770  1516
+    ##   TRUE   4673     0
 
 ``` r
 # native vs edible
@@ -99,8 +108,8 @@ table(trees$native, trees$edible)
 
     ##        
     ##         fruit  none  nuts
-    ##   FALSE  3695 44129   142
-    ##   TRUE      0  3878   829
+    ##   FALSE  2035 35109   142
+    ##   TRUE      0  3844   829
 
 ``` r
 # native vs size
@@ -109,8 +118,8 @@ table(trees$native, trees$size)
 
     ##        
     ##             L     M     S
-    ##   FALSE  8422 16554 22990
-    ##   TRUE   2580   237  1890
+    ##   FALSE  6611 13619 17056
+    ##   TRUE   2546   237  1890
 
 ``` r
 # nuisance vs size
@@ -119,7 +128,7 @@ table(trees$nuisance, trees$size)
 
     ##        
     ##             L     M     S
-    ##   FALSE 10221 16056 24880
+    ##   FALSE  8376 13121 18946
     ##   TRUE    781   735     0
 
 Interestingly, all nuisance trees are either large or medium.

@@ -1,6 +1,6 @@
 ---
 title: "Basic questions"
-author: "Miranda Rintoul"
+author: "-------"
 date: "4/16/2018"
 output: github_document
 ---
@@ -24,7 +24,7 @@ table(trees$native)
 table(trees$nuisance)
 table(trees$edible)
 table(trees$size)
-# still need to figure out what the "function" col refers to
+table(trees$origin)
 table(trees$funct)
 ```
 

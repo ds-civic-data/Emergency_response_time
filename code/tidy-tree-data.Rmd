@@ -23,6 +23,16 @@ trees <- trees %>%
 
 ```{r}
 # transform data
+# make origin regex to pull out continents
+origin_pat <- "^[A-Z][a-z]+ ?[A]?[a-z]+"
+x <-grepl(origin_pat,trees$Origin)
+# remove bad origin rows, make better origin variable
+trees <- trees %>%
+  filter(x) %>%
+  mutate(origin_wip = grep(origin_pat,Origin, value=T) %>% str_extract(origin_pat)) %>%
+  mutate(origin = ifelse(origin_wip=="China","Asia",origin_wip)) %>%
+  select(-Origin,-origin_wip)
+
 trees <- trees %>%
 # filter out trees with no native val, make better "native" col
   filter(Native %in% c("Yes","No")) %>%
@@ -48,7 +58,7 @@ trees <- trees %>%
 # reorder and rename cols
 trees <- trees %>%
   select(X,Y,Year_Plant,Common_nam,Size,canopy_rad,canopy_area,native,
-         nuisance,edible,Family,Genus_spec,Origin,Functional,group)
+         nuisance,edible,Family,Genus_spec,origin,Functional,group)
 names(trees) <- c("xcoord","ycoord","year","name","size","canopy_rad","canopy_area",
                   "native","nuisance","edible","family","species","origin",
                   "funct","group")
