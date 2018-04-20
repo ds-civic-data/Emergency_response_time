@@ -1,6 +1,6 @@
 ---
 title: "tidy tree data"
-author: "Miranda Rintoul"
+author: "-----------------------"
 date: "4/15/2018"
 output: github_document
 ---
