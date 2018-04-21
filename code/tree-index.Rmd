@@ -1,0 +1,76 @@
+---
+title: "Tree Species Index"
+author: '-------------------------------------'
+date: "4/20/2018"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+We will propose a simple system for indexing the different species of trees: 
+
+$index = evergreen+s+native-nuisance-popularity$
+
+$evergreen$ takes a value of 5 if the tree is evergreen, and is 0 otherwise.
+
+$s$ is the square root of a tree's canopy radius.
+
+$native$ takes a value of 5 if the tree is native, and is 0 otherwise.
+
+$nuisance$ takes a value of 5 if the tree is a nuisance plant, and 0 otherwise.
+
+$popularity$ is the natural log of the number of times the tree has been planted recently.
+
+
+
+```{r,cache=T}
+# load up tidy dataset
+trees <- read.csv("~/emergency-response-time/data/tree_tidy.csv")
+```
+
+```{r}
+# get rid of cols we don't need
+index_build <- trees %>%
+  select(-name, -xcoord,-ycoord,-year,-size,-canopy_area,-family,-edible
+        -origin,-group) %>%
+  select(species, funct, canopy_rad, native, nuisance)
+# mutate a whole bunch of numeric variables
+index_build <- trees %>%
+  group_by(species) %>%
+  mutate(tot=n(), pop = log(tot)) %>%
+  mutate(s=sqrt(canopy_rad)) %>%
+  mutate(nat=ifelse(native,5,0)) %>%
+  mutate(nuis=ifelse(nuisance,5,0)) %>%
+  mutate(ever=ifelse(funct=="BE"|funct=="CE",5,0)) %>%
+  # mutate index
+  mutate(index = ever+s+nat-nuis-pop)
+
+# make a simple index of all the species
+tree_index <- index_build %>%
+  select(species,index) %>%
+  group_by(species) %>%
+  summarize(index=mean(index))
+
+# full join index and tidy set
+tree_tidy_index <- trees %>%
+  full_join(tree_index,by=c("species"="species"))
+```
+
+```{r}
+# export new tidy, tree index
+
+setwd("~/emergency-response-time/data")
+write.csv(tree_tidy_index, "tree_tidy_index.csv",row.names=F)
+write.csv(tree_index, "tree_index.csv",row.names=F)
+```
+
+
+
+
+
+
+
+
