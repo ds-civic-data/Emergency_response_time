@@ -1,0 +1,42 @@
+---
+title: "census-tract-tidy"
+output: github_document
+author: Lirui Jiao
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggmap)
+library(rgdal)
+library(sp)
+```
+
+```{r, cache=TRUE}
+# read data
+medianincome <- read.csv("~/emergency-response-time/data-raw/median-income.csv")
+setwd("~/emergency-response-time/data-raw/census-tracts")
+location <- readOGR(dsn = ".", layer ="tract2010")
+```
+```{r, cache=TRUE}
+medianincome <- medianincome %>%
+  select(Geo_FIPS, Geo_GEOID, Geo_NAME, Geo_QName, Geo_TRACT, SE_T061_001)
+```
+
+```{r}
+proj4string(location)
+location_proj <- location %>%
+  spTransform(CRS("+init=epsg:4326")) %>%
+  as.data.frame() %>%
+  select(TRACT, TRACT_NO, FIPS) %>%
+  mutate(numFIPS = as.numeric(FIPS))
+```
+```{r}
+census_tract <- full_join(medianincome, location_proj, by = c("Geo_FIPS" = "numFIPS")) 
+```
+
+```{r}
+setwd("~/emergency-response-time/data")
+write.csv(census_tract, "census_tract.csv", row.names = F)
+```
+
