@@ -2,7 +2,7 @@
 
 ### Theme
 
-We will be studying Portland street trees.  We hope to figure out if the "right" types of trees have been used in recent planting efforts.  These include large, native, evergreen trees.
+We will be studying Portland street trees.  We hope to figure out if the "right" types of trees have been used in recent planting efforts.  These include large, native, evergreen trees.  We also want to find if trees are being planted equally across low and high income areas.
 
 ### Questions
 
@@ -10,7 +10,7 @@ How many street trees are large? Native? Evergreen?
 
 Have the recent plantings been of the "right" type of tree?  If not, how can planting efforts be improved?
 
-Is tree type related to location?
+Is tree type related to location?  How many trees (and what kinds of trees) are in low-income areas?
 
 ### Relevant work/resources
 
@@ -31,7 +31,7 @@ Is tree type related to location?
 #### Source with citation
 #### Data structure / size
 
-The data contains 52,673 rows, each corresponding to a Portland tree.  The columns correspond to different pieces of information about the tree's planting - date, location, species, etc.
+The data contains around 50,000 rows, each corresponding to a Portland tree.  The columns correspond to different pieces of information about the tree's planting - date, location, species, etc.
 
 #### Observational unit
 
@@ -64,4 +64,4 @@ Each observational unit is one planting of a Portland street tree.
 #### Data
 #### Format
 
-The project deliverable will most likely be a whitepaper containing informative maps of Portland relating to the presence of non-native or nuisance trees.  It may end up being a Shiny app, however.
+The project deliverable will most likely be a whitepaper containing informative maps of Portland relating to the plantings of different types of trees.  It will also include information on low-income areas of Portland.
