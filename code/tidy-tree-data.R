@@ -51,5 +51,5 @@ names(trees) <- c("xcoord","ycoord","year","name","size","canopy_rad","canopy_ar
 ########################################
 
 # export new tidy as csv
-setwd("~/emergency-response-time/data")
-write.csv(trees, "tree_tidy.csv",row.names=F)
+write.csv(trees, "~/emergency-response-time/data/tree_tidy.csv",row.names=T)
+
