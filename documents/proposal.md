@@ -2,15 +2,21 @@
 
 ### Theme
 
-We will be studying Portland street trees.  We hope to figure out if the "right" types of trees have been used in recent planting efforts.  These include large, native, evergreen trees.  We also want to find if trees are being planted equally across low and high income areas.
+We will be studying Portland street trees.  We hope to figure out if the "right" types of trees have been used in recent planting efforts.  These include large, native, evergreen trees.  We also want to learn about the planting trends across different demographics.
 
 ### Questions
 
-How many street trees are large? Native? Evergreen?
+**What is the planting trend across different demographic areas?**
 
-Have the recent plantings been of the "right" type of tree?  If not, how can planting efforts be improved?
+Has planting increased over time overall?  What about in low and high income areas?
 
-Is tree type related to location?  How many trees (and what kinds of trees) are in low-income areas?
+Are the same types of trees being planted?  Do the proportions of native/evergreen/large trees differ across different incomes?
+
+**Do planted trees persist?**
+
+Are the trees in the planting dataset still alive?
+
+What types and species of trees last longer, and which ones have died out?
 
 ### Relevant work/resources
 
@@ -26,36 +32,49 @@ Is tree type related to location?  How many trees (and what kinds of trees) are 
 
 ### Contacts
 
-### Describe the data
+* [Portland Parks & Recreation](https://www.portlandoregon.gov/parks/)
 
-#### Source with citation
-#### Data structure / size
+* [Friends of Trees](https://friendsoftrees.org/)
 
-The data contains around 50,000 rows, each corresponding to a Portland tree.  The columns correspond to different pieces of information about the tree's planting - date, location, species, etc.
+### Data
 
-#### Observational unit
+To answer our first question, we are using three datasets - a database of street tree plantings, information on median income in Portland by census tract, and a spatial dataset of the census tracts.
 
-Each observational unit is one planting of a Portland street tree.
+#### Tree Planting Data
 
-#### Types of variables
+This dataset was compiled by Portland Parks & Recreation. It contains tree planting data from several different organizations, but most of it comes from the nonprofit Friends of Trees. 
 
-| Desc | Column | Type | Range/Levels |
-|-|:-:|:-:|:-:|
-| Latitude | xcoord | num | 7617163-7694346 |
-| Longitude | ycoord | num | 656186.7-729717.2 |
-| Planting year | year | int | 1989-2018 |
-| Common name | name | factor | - |
-| Canopy size | size | factor | S, M, L |
-| Canopy radius | canopy_rad | int | 20-60 |
-| Canopy area | canopy_area | num | 1257-11310 |
-| Native? | native | logical | T/F |
-| Nuisance? | nuisance | logical | T/F |
-| Edible? | edible | factor | fruit, nuts, none |
-| Tree family | family | factor | - |
-| Species | species | factor | - |
-| Tree origin | origin | factor | - |
-| Functional group | funct | factor | BD, BE, CD, CE |
-| Planting group | group | factor | contractor, park, street, yard |
+There are two components to this data.  The first is a table of plantings with each row corresponding to a planting of a specific stree tree.  It includes variables for the tree's location, planting date, species, and other information.  The second component is the spatial version of that table.
+
+For our project, the most important variables will be:
+
+* Location: in latitude/longitude coordinates
+
+* Year: a numeric variable for the tree's planting year
+
+* Name/species: categorical variables to identify a tree
+
+* Size: a categorical variable with values small, medium, and large - we'll use this to approximate canopy radius and area for a tree
+
+* Functional group: a categorical variable describing whether a tree is broadleaf or conifer, and deciduous or evergreen
+
+* Index: a numeric variable giving an idea of the general quality of a tree
+
+#### Income Data
+
+~
+
+#### Census Tract Data
+
+Source: [RLIS Discovery](http://rlisdiscovery.oregonmetro.gov/?action=viewDetail&layerID=2588)
+
+This is a shapefile of all the Portland census tracts.  We will be joining it with the census income data and the spatial tree data to create informative maps of Portland street trees and perform analyses across geographical boundaries.
+
+To answer our second question, we'll need a fourth dataset: a current list of Portland street trees.  We will be able to join this with the planting dataset to figure out which trees persist.
+
+#### Current Street Tree Data
+
+~
 
 ### Vision for deliverable
 

@@ -125,13 +125,16 @@ $(document).ready(function () {
 <h2>Proposal</h2>
 <div id="theme" class="section level3">
 <h3>Theme</h3>
-<p>We will be studying Portland street trees. We hope to figure out if the “right” types of trees have been used in recent planting efforts. These include large, native, evergreen trees. We also want to find if trees are being planted equally across low and high income areas.</p>
+<p>We will be studying Portland street trees. We hope to figure out if the “right” types of trees have been used in recent planting efforts. These include large, native, evergreen trees. We also want to learn about the planting trends across different demographics.</p>
 </div>
 <div id="questions" class="section level3">
 <h3>Questions</h3>
-<p>How many street trees are large? Native? Evergreen?</p>
-<p>Have the recent plantings been of the “right” type of tree? If not, how can planting efforts be improved?</p>
-<p>Is tree type related to location? How many trees (and what kinds of trees) are in low-income areas?</p>
+<p><strong>What is the planting trend across different demographic areas?</strong></p>
+<p>Has planting increased over time overall? What about in low and high income areas?</p>
+<p>Are the same types of trees being planted? Do the proportions of native/evergreen/large trees differ across different incomes?</p>
+<p><strong>Do planted trees persist?</strong></p>
+<p>Are the trees in the planting dataset still alive?</p>
+<p>What types and species of trees last longer, and which ones have died out?</p>
 </div>
 <div id="relevant-workresources" class="section level3">
 <h3>Relevant work/resources</h3>
@@ -145,124 +148,41 @@ $(document).ready(function () {
 </div>
 <div id="contacts" class="section level3">
 <h3>Contacts</h3>
+<ul>
+<li><p><a href="https://www.portlandoregon.gov/parks/">Portland Parks &amp; Recreation</a></p></li>
+<li><p><a href="https://friendsoftrees.org/">Friends of Trees</a></p></li>
+</ul>
 </div>
-<div id="describe-the-data" class="section level3">
-<h3>Describe the data</h3>
-<div id="source-with-citation" class="section level4">
-<h4>Source with citation</h4>
+<div id="data" class="section level3">
+<h3>Data</h3>
+<p>To answer our first question, we are using three datasets - a database of street tree plantings, information on median income in Portland by census tract, and a spatial dataset of the census tracts.</p>
+<div id="tree-planting-data" class="section level4">
+<h4>Tree Planting Data</h4>
+<p>This dataset was compiled by Portland Parks &amp; Recreation. It contains tree planting data from several different organizations, but most of it comes from the nonprofit Friends of Trees.</p>
+<p>There are two components to this data. The first is a table of plantings with each row corresponding to a planting of a specific stree tree. It includes variables for the tree’s location, planting date, species, and other information. The second component is the spatial version of that table.</p>
+<p>For our project, the most important variables will be:</p>
+<ul>
+<li><p>Location: in latitude/longitude coordinates</p></li>
+<li><p>Year: a numeric variable for the tree’s planting year</p></li>
+<li><p>Name/species: categorical variables to identify a tree</p></li>
+<li><p>Size: a categorical variable with values small, medium, and large - we’ll use this to approximate canopy radius and area for a tree</p></li>
+<li><p>Functional group: a categorical variable describing whether a tree is broadleaf or conifer, and deciduous or evergreen</p></li>
+<li><p>Index: a numeric variable giving an idea of the general quality of a tree</p></li>
+</ul>
 </div>
-<div id="data-structure-size" class="section level4">
-<h4>Data structure / size</h4>
-<p>The data contains around 50,000 rows, each corresponding to a Portland tree. The columns correspond to different pieces of information about the tree’s planting - date, location, species, etc.</p>
+<div id="income-data" class="section level4">
+<h4>Income Data</h4>
+<p>~</p>
 </div>
-<div id="observational-unit" class="section level4">
-<h4>Observational unit</h4>
-<p>Each observational unit is one planting of a Portland street tree.</p>
+<div id="census-tract-data" class="section level4">
+<h4>Census Tract Data</h4>
+<p>Source: <a href="http://rlisdiscovery.oregonmetro.gov/?action=viewDetail&amp;layerID=2588">RLIS Discovery</a></p>
+<p>This is a shapefile of all the Portland census tracts. We will be joining it with the census income data and the spatial tree data to create informative maps of Portland street trees and perform analyses across geographical boundaries.</p>
+<p>To answer our second question, we’ll need a fourth dataset: a current list of Portland street trees. We will be able to join this with the planting dataset to figure out which trees persist.</p>
 </div>
-<div id="types-of-variables" class="section level4">
-<h4>Types of variables</h4>
-<table>
-<thead>
-<tr class="header">
-<th>Desc</th>
-<th align="center">Column</th>
-<th align="center">Type</th>
-<th align="center">Range/Levels</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Latitude</td>
-<td align="center">xcoord</td>
-<td align="center">num</td>
-<td align="center">7617163-7694346</td>
-</tr>
-<tr class="even">
-<td>Longitude</td>
-<td align="center">ycoord</td>
-<td align="center">num</td>
-<td align="center">656186.7-729717.2</td>
-</tr>
-<tr class="odd">
-<td>Planting year</td>
-<td align="center">year</td>
-<td align="center">int</td>
-<td align="center">1989-2018</td>
-</tr>
-<tr class="even">
-<td>Common name</td>
-<td align="center">name</td>
-<td align="center">factor</td>
-<td align="center">-</td>
-</tr>
-<tr class="odd">
-<td>Canopy size</td>
-<td align="center">size</td>
-<td align="center">factor</td>
-<td align="center">S, M, L</td>
-</tr>
-<tr class="even">
-<td>Canopy radius</td>
-<td align="center">canopy_rad</td>
-<td align="center">int</td>
-<td align="center">20-60</td>
-</tr>
-<tr class="odd">
-<td>Canopy area</td>
-<td align="center">canopy_area</td>
-<td align="center">num</td>
-<td align="center">1257-11310</td>
-</tr>
-<tr class="even">
-<td>Native?</td>
-<td align="center">native</td>
-<td align="center">logical</td>
-<td align="center">T/F</td>
-</tr>
-<tr class="odd">
-<td>Nuisance?</td>
-<td align="center">nuisance</td>
-<td align="center">logical</td>
-<td align="center">T/F</td>
-</tr>
-<tr class="even">
-<td>Edible?</td>
-<td align="center">edible</td>
-<td align="center">factor</td>
-<td align="center">fruit, nuts, none</td>
-</tr>
-<tr class="odd">
-<td>Tree family</td>
-<td align="center">family</td>
-<td align="center">factor</td>
-<td align="center">-</td>
-</tr>
-<tr class="even">
-<td>Species</td>
-<td align="center">species</td>
-<td align="center">factor</td>
-<td align="center">-</td>
-</tr>
-<tr class="odd">
-<td>Tree origin</td>
-<td align="center">origin</td>
-<td align="center">factor</td>
-<td align="center">-</td>
-</tr>
-<tr class="even">
-<td>Functional group</td>
-<td align="center">funct</td>
-<td align="center">factor</td>
-<td align="center">BD, BE, CD, CE</td>
-</tr>
-<tr class="odd">
-<td>Planting group</td>
-<td align="center">group</td>
-<td align="center">factor</td>
-<td align="center">contractor, park, street, yard</td>
-</tr>
-</tbody>
-</table>
+<div id="current-street-tree-data" class="section level4">
+<h4>Current Street Tree Data</h4>
+<p>~</p>
 </div>
 </div>
 <div id="vision-for-deliverable" class="section level3">
@@ -273,7 +193,7 @@ $(document).ready(function () {
 <div id="models" class="section level4">
 <h4>Models</h4>
 </div>
-<div id="data" class="section level4">
+<div id="data-1" class="section level4">
 <h4>Data</h4>
 </div>
 <div id="format" class="section level4">
