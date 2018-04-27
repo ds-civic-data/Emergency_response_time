@@ -14,8 +14,10 @@
 "Acer rubrum",3
 "Acer saccharinum",5
 "Acer saccharum",5
+"Acer spp.",3
 "Acer tartaricum ssp. ginnala",1
 "Acer x freemanii",3
+"Aesculus spp.",5
 "Albizia julibrissin",3
 "Alnus rubra",4
 "Arbutus menziesii",6
@@ -26,47 +28,63 @@
 "Betula nigra",3
 "Betula papyrifera",3
 "Betula pendula",3
+"Betula spp.",3
 "Betula utilis var. jacquemontii",3
 "Calocedrus decurrens",8
 "Carpinus betulus",3
 "Carpinus caroliniana",1
+"Carpinus spp.",3
 "Castanea mollissima",5
+"Castanea spp.",5
 "Catalpa speciosa",5
 "Catalpa x erubescens ‘Purpurea’",3
 "Cedrus atlantica ‘Glauca’",7
 "Cedrus deodara",7
+"Cedrus spp.",7
+"Celtis spp.",3
 "Cercidiphyllum japonicum",3
 "Cercis canadensis",1
 "Cercis occidentalis",1
+"Cercis spp.",1
 "Chionanthus retusus",1
 "Cladrastis kentukea",3
+"Clerodendrum spp.",1
 "Clerodendrum trichotomum",3
 "Cornus controversa",3
 "Cornus florida",1
 "Cornus kousa",1
 "Cornus mas",1
 "Cornus nuttallii",4
+"Cornus spp.",1
 "Corylus colurna",1
 "Cotinus obovatus",1
+"Cotinus spp.",1
 "Crataegus douglasii",2
 "Crataegus phaenopyrum",1
 "Crataegus x lavallei",1
 "Cunninghamia lanceolata",7
 "Cupressus nootkatensis syn. Xanthocyparis nootkatensis",6
+"Cupressus spp.",5
 "Davidia involucrata",3
+"Diospyros spp.",3
 "Eucalyptus spp.",7
 "Eucommia ulmoides",1
+"Fagus spp.",5
 "Fagus sylvatica",5
 "Ficus carica",1
 "Franklinia alatamaha",1
 "Fraxinus americana",3
+"Fraxinus angustifolia",3
+"Fraxinus excelsior",3
 "Fraxinus latifolia",4
 "Fraxinus ornus",3
 "Fraxinus pennsylvanica",3
 "Ginkgo biloba",5
 "Gleditsia triacanthos",5
 "Gymnocladus dioicus",5
+"Halesia spp.",1
 "Halesia tetraptera var. monticola syn. Halesia carolina var. monticola",1
+"Hamamelis spp.",1
 "Heptacodium miconioides",1
 "Juglans nigra",5
 "Juglans regia",5
@@ -79,13 +97,16 @@
 "Maackia amurensis",3
 "Maclura pomifera",1
 "Magnolia grandiflora",5
+"Magnolia spp.",3
 "Magnolia virginiana",5
 "Magnolia x soulangeana",3
 "Malus domestica",3
 "Malus fusca",2
+"Malus spp.",1
 "Metasequoia glyptostroboides",5
 "Nyssa sinensis",3
 "Nyssa sylvatica",3
+"Ostrya spp.",3
 "Ostrya virginiana",3
 "Oxydendrum arboreum",3
 "Parrotia persica",3
@@ -94,13 +115,17 @@
 "Picea pungens",7
 "Pinus contorta",6
 "Pinus flexilis",8
+"Pinus nigra",7
 "Pinus ponderosa",8
+"Pinus sylvestris",7
 "Pistacia chinensis",1
 "Platanus x acerifolia",5
 "Poliothyrsis sinensis",3
 "Populus tremuloides",4
 "Prunus cerasifera",1
+"Prunus (cherry species and cultivars)",1
 "Prunus (other than cherry or plums)",3
+"Prunus (plum species and cultivars)",1
 "Prunus serrula",1
 "Prunus serrulata",1
 "Pseudotsuga menziesii",8
@@ -108,6 +133,7 @@
 "Pyrus calleryana",3
 "Pyrus communis",3
 "Pyrus pyrifolia",3
+"Pyrus spp.",3
 "Quercus acutissima",5
 "Quercus alba",5
 "Quercus bicolor",5
@@ -128,8 +154,10 @@
 "Sciadopitys verticillata",5
 "Sequoiadendron giganteum",7
 "Sequoia sempervirens",8
+"Sorbus spp.",1
 "Stewartia monadelpha",1
 "Stewartia pseudocamellia",1
+"Stewartia spp.",1
 "Styphnolobium japonicum syn. Sophora japonica",3
 "Styrax japonicus",1
 "Styrax obassia",1
@@ -138,9 +166,13 @@
 "Thuja plicata",8
 "Tilia americana",5
 "Tilia cordata",5
+"Tilia spp.",5
 "Tilia tomentosa",5
+"Tsuga heterophylla",8
 "Ulmus americana",5
 "Ulmus parvifolia",3
+"Ulmus spp.",5
+"Ulmus x",5
 "Umbellularia californica",8
 "x Chitalpa tashkentensis",1
 "X Sycoparrotia semidecidua",1
