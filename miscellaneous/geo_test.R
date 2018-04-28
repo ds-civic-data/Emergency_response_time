@@ -7,18 +7,13 @@ library(scales)
 
 setwd("~/emergency-response-time/data-raw/census-tracts")
 location <- readOGR(dsn = ".", layer ="tract2010")
-cnty <- map_data("county")
+
+setwd("~/emergency-response-time/data-raw/tree-spatial")
+trees <- readOGR(dsn = ".", layer ="All_trees_3_2018_species")
+
 joined <- read.csv("~/emergency-response-time/data/census_tract.csv")
 
-trees <- read.csv("~/emergency-response-time/data/tree_tidy.csv")
 
-lonlat <- cbind(trees$xcoord,trees$ycoord)
-pts <- SpatialPoints(lonlat)
-
-crdref <- CRS('+proj=longlat +datum=WGS84')
-pts <- SpatialPoints(lonlat, proj4string=crdref)
-
-showDefault(pts)
 
 location <- location %>%
   spTransform(CRS("+init=epsg:4326"))
@@ -52,3 +47,20 @@ tract_income %>%
   geom_polygon(aes(x=lon,y=lat,group=group, fill=SE_T061_001),
                color="black",size=0.3)
 
+##########
+
+tree_proj <- trees %>%
+  spTransform(CRS("+init=epsg:4326")) %>%
+  as.data.frame() %>%
+  select(`coords.x1`,`coords.x2`)
+
+inc_small <- tract_income %>%
+  filter(lon > -122.78562 & lon < -122.48032, lat > 45.44466 & lat < 45.64596)
+
+ggplot() +
+  geom_polygon(data=inc_small,aes(x=lon,y=lat,group=group, fill=SE_T061_001),
+               color="black",size=0.3) +
+  geom_point(data=tree_proj, aes(x=`coords.x1`,y=`coords.x2`),
+             color="darkgreen", alpha=.5,shape=46)
+
+write.csv(tract_income, "~/emergency-response-time/data/tract_income.csv")
