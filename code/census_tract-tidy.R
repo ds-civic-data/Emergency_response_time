@@ -8,6 +8,7 @@ medianincome <- read.csv("~/emergency-response-time/data-raw/median-income.csv")
 setwd("~/emergency-response-time/data-raw/census-tracts")
 location <- readOGR(dsn = ".", layer ="tract2010")
 
+# tidy data
 medianincome <- medianincome %>%
   select(Geo_FIPS, Geo_GEOID, Geo_NAME, Geo_QName, Geo_TRACT, SE_T061_001)
 
@@ -18,7 +19,9 @@ location_proj <- location %>%
   select(TRACT, TRACT_NO, FIPS) %>%
   mutate(numFIPS = as.numeric(FIPS))
 
+# join data
 census_tract <- full_join(medianincome, location_proj, by = c("Geo_FIPS" = "numFIPS")) 
 
+# export data
 write.csv(census_tract, "~/emergency-response-time/data/census_tract.csv", row.names = F)
 
