@@ -20,10 +20,10 @@ trees <- trees %>%
 
 # reorder and rename cols
 trees <- trees %>%
-  select(Common_nam,Genus_spec,Year_Plant, Size, native, canopy_rad, canopy_area,
-         type, SE_T061_001,Geo_GEOID)
+  select(lon, lat, Common_nam,Genus_spec,Year_Plant, Size, native,
+         canopy_rad, canopy_area, type, SE_T061_001,Geo_GEOID)
 
-names(trees) <- c("name","species","year","size","native","canopy_rad",
+names(trees) <- c("lon","lat","name","species","year","size","native","canopy_rad",
                   "canopy_area","type","income","geoid")
 
 ########################################
@@ -58,7 +58,6 @@ glimpse(tree_index)
 # full join index and tidy set
 tree_tidy_index <- trees %>%
   full_join(tree_index,by=c("name"="name"))
-glimpse(tree_tidy_index)
 
 ########################################
 # export new tidy table as csv
