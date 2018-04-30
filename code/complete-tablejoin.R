@@ -17,7 +17,7 @@ complete_tablejoin <- full_join(medianincome, treetract, by = c("Geo_FIPS" = "FI
 
 # more tidying 
 complete_tablejoin <- complete_tablejoin %>%
-  select(Geo_GEOID, Year_Plant, Common_nam, Genus_spec, Size, Native, Functional,
+  select(lon, lat, Geo_GEOID, Year_Plant, Common_nam, Genus_spec, Size, Native, Functional,
          SE_T061_001)
 
 # export data
