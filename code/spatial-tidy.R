@@ -36,20 +36,21 @@ loc_coords <- extractCoords(location)
 # convert coordinates into dataframe, tidy it
 loc_df <- as.data.frame(do.call(rbind, loc_coords))
 names(loc_df) <- c("lon", "lat", "group", "fips")
-loc_df$lon <- as.numeric(as.character(df$lon))
-loc_df$lat <- as.numeric(as.character(df$lat))
-loc_df$group <- as.numeric(as.character(df$group))
-loc_df$fips <- as.numeric(as.character(df$fips))
+loc_df$lon <- as.numeric(as.character(loc_df$lon))
+loc_df$lat <- as.numeric(as.character(loc_df$lat))
+loc_df$group <- as.numeric(as.character(loc_df$group))
+loc_df$fips <- as.numeric(as.character(loc_df$fips))
 
 ########################################
 # add income
 # join location df with income data
-full_spatial <- full_join(medianincome, loc_df, by=c("Geo_FIPS"="fips"))
+full_spatial <- inner_join(medianincome, loc_df, by=c("Geo_FIPS"="fips"))
 
 full_spatial <- full_spatial %>%
   select(lon, lat, group, SE_T061_001, Geo_GEOID)
 
 names(full_spatial) <- c("lon","lat","group","income","geoid")
+
 
 # mutate income column
 pdx_mean_inc <- 77208
