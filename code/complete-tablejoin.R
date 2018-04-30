@@ -5,10 +5,8 @@ library(sp)
 
 # read data
 medianincome <- read.csv("~/emergency-response-time/data-raw/median-income.csv")
-setwd("~/emergency-response-time/data-raw/census-tracts")
 
 treetract <- read.csv("~/emergency-response-time/data/tree_tract.csv")
-setwd("~/emergency-response-time/data")
 
 # tidy data
 medianincome <- medianincome %>%
@@ -19,8 +17,10 @@ complete_tablejoin <- full_join(medianincome, treetract, by = c("Geo_FIPS" = "FI
 
 # more tidying 
 complete_tablejoin <- complete_tablejoin %>%
-  select(Geo_FIPS, Geo_GEOID, Date_Plant, Common_nam, Genus_spec, Size, Native)
+  select(Geo_GEOID, Year_Plant, Common_nam, Genus_spec, Size, Native, Functional,
+         SE_T061_001)
 
 # export data
-write.csv(complete_tablejoin, "~/emergency-response-time/data/complete_tablejoin.csv", row.names = F)
+write.csv(complete_tablejoin, 
+          "~/emergency-response-time/data/complete_tablejoin.csv", row.names = F)
 
