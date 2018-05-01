@@ -1,7 +1,10 @@
 library(tidyverse)
 
-# read data
+# read tidy data
 trees <- read.csv("~/emergency-response-time/data/complete_tablejoin.csv")
+
+# read second (current) data
+current <- read.csv("~/emergency-response-time/data-raw/street_trees_current.csv")
 
 ########################################
 # transform data (tree stuff)
@@ -60,6 +63,17 @@ tree_tidy_index <- trees %>%
   full_join(tree_index,by=c("name"="name"))
 
 ########################################
+# tidy current tree data, join datasets
+
+glimpse(current)
+
+
+full_tree <- left_join(trees, current, by=c("lon"="X","lat"="Y"))
+
+glimpse(full_tree)
+table(full_tree$Condition)
+
+
 # export new tidy table as csv
 write.csv(trees, "~/emergency-response-time/data/fulltable_tidy.csv",row.names=F)
 
