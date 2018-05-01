@@ -37,6 +37,9 @@ trees <- trees %>%
   mutate(inc_level = ifelse(income>(.8*pdx_mean_inc), "normal",
                             ifelse(income>(.5*pdx_mean_inc), "low", "very_low")))
 
+# reorder income 
+trees$inc_level <- factor(trees$inc_level, levels=c("very_low","low","normal"))
+
 ########################################
 # create tree index
 # get rid of cols we don't need
@@ -75,7 +78,8 @@ table(full_tree$Condition)
 
 
 # export new tidy table as csv
-write.csv(trees, "~/emergency-response-time/data/fulltable_tidy.csv",row.names=F)
+write.csv(tree_tidy_index,
+          "~/emergency-response-time/data/fulltable_tidy.csv",row.names=F)
 
 # export tree index
 write.csv(tree_index, 
