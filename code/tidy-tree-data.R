@@ -61,7 +61,7 @@ tree_tidy_index <- trees %>%
 
 ########################################
 # export new tidy table as csv
-write.csv(trees, "~/emergency-response-time/data/fulltable_tidy.csv",row.names=T)
+write.csv(trees, "~/emergency-response-time/data/fulltable_tidy.csv",row.names=F)
 
 # export tree index
 write.csv(tree_index, 
