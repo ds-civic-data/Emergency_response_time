@@ -1,6 +1,6 @@
-# nuisance-trees
+# pdx-tree-planting
 
-We will be studying Portland street trees, concentrating on nuisance and non-native trees. 
+We will be studying trends in Portland street tree plantings.
 
 ### Authors
 
