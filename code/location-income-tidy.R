@@ -15,5 +15,5 @@ medianincome <- read.csv("~/emergency-response-time/data-raw/median-income.csv")
 # merge 
 location_income <- merge(location, medianincome, by='FIPS')
 
-# perhaps save as shapefile again
-shapefile(location_income, "~/emergency-response-time/merged.shp")
+# save as shapefile again
+shapefile(location_income, "~/emergency-response-time/data/merged.shp")
