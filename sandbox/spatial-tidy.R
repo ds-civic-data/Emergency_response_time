@@ -5,6 +5,7 @@ library(sp)
 library(maps)
 library(scales)
 library(raster)
+library(broom)
 library(RColorBrewer)
 
 # read spatial data
@@ -33,11 +34,13 @@ my_colors=my_colors[as.numeric(class_of_tract)]
 plot(m, col=my_colors, xlim=c(-122.78562, -122.48032),
      ylim=c(45.44466, 45.64596))
 
+mf <- fortify(m, region="FIPS")
+
+
 medianincome$Geo_FIPS <- as.character(medianincome$Geo_FIPS)
 
-ggplot() + geom_map(data = mf, aes(map_id = id), 
+ggplot() + geom_map(data = m@data, aes(map_id=FIPS, fill=income), 
                     map = mf)
-
 
 ########################################
 # tidy spatial data, extract coordinates into dataframe
