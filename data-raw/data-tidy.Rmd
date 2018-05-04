@@ -195,28 +195,43 @@ The dataset `trees` is sufficient to perform analysis on planting trends.  To st
 # pre-join tidying
 # filter out trees that aren't street trees, or are planted after 2010, mutate origin
 old_trees <- trees %>%
-  filter(type=="street", year<2010) %>%
-  mutate(Origin="planting")
+  filter(type=="street", year<2010)
 # change address to uppercase
 old_trees$address <- toupper(old_trees$address)
 
-# survey data: unselect most columns, make a new col for origin, year
+# survey data: unselect most columns, make a new col for year surveyed
 survey <- survey %>%
   dplyr::select(Date_Inventoried, Condition, Address, Scientific) %>%
-  mutate(year = substr(Date_Inventoried, start=1, stop=4)) %>%
-  mutate(Origin="survey") %>%
+  mutate(surveyed = substr(Date_Inventoried, start=1, stop=4)) %>%
   dplyr::select(-Date_Inventoried)
-names(survey) <- c("condition", "address","species","year","Origin")
+names(survey) <- c("condition", "address","species","surveyed")
 ```
 
 ```{r}
 # full join tree datasets by address, species
 tree_persist <- old_trees %>%
-  full_join(survey, by=c("address"="address","species"="species"))
+  full_join(survey,by=c("address"="address", "species"="species"))
 
-glimpse(tree_persist)
-write.csv(tree_persist,"~/emergency-response-time/data/tree_persist.csv",
-          row.names=F)
+# mutate persist variable
+tree_persist <- tree_persist %>%
+  mutate(persist=ifelse(is.na(year),NA,
+                        ifelse(is.na(surveyed),F,T)))
+```
+
+## Export data sets
+
+```{r,eval=F}
+# income/tract shapefile
+shapefile(tract_inc, "~/emergency-response-time/data/tract-inc/tract_inc.shp")
+
+# planting tend tree dataset
+write.csv(trees, "~/emergency-response-time/data/trees.csv")
+
+# tree persistence dataset
+write.csv(tree_persist, "~/emergency-response-time/data/tree_persist.csv")
+
+# tree index
+write.csv(tree_index, "~/emergency-response-time/data/tree_index.csv")
 ```
 
 

@@ -15,6 +15,7 @@ Data Tidying
         -   [Join with income data](#join-with-income-data)
         -   [Make a tree index](#make-a-tree-index)
         -   [Join with survey data](#join-with-survey-data)
+    -   [Export data sets](#export-data-sets)
 
 Overview
 ========
@@ -217,24 +218,22 @@ The dataset `trees` is sufficient to perform analysis on planting trends. To stu
 # pre-join tidying
 # filter out trees that aren't street trees, or are planted after 2010, mutate origin
 old_trees <- trees %>%
-  filter(type=="street", year<2010) %>%
-  mutate(Origin="planting")
+  filter(type=="street", year<2010)
 # change address to uppercase
 old_trees$address <- toupper(old_trees$address)
 
-# survey data: unselect most columns, make a new col for origin, year
+# survey data: unselect most columns, make a new col for year surveyed
 survey <- survey %>%
   dplyr::select(Date_Inventoried, Condition, Address, Scientific) %>%
-  mutate(year = substr(Date_Inventoried, start=1, stop=4)) %>%
-  mutate(Origin="survey") %>%
+  mutate(surveyed = substr(Date_Inventoried, start=1, stop=4)) %>%
   dplyr::select(-Date_Inventoried)
-names(survey) <- c("condition", "address","species","year","Origin")
+names(survey) <- c("condition", "address","species","surveyed")
 ```
 
 ``` r
 # full join tree datasets by address, species
 tree_persist <- old_trees %>%
-  full_join(survey, by=c("address"="address","species"="species"))
+  full_join(survey,by=c("address"="address", "species"="species"))
 ```
 
     ## Warning: Column `address` joining character vector and factor, coercing
@@ -244,32 +243,25 @@ tree_persist <- old_trees %>%
     ## to character vector
 
 ``` r
-glimpse(tree_persist)
+# mutate persist variable
+tree_persist <- tree_persist %>%
+  mutate(persist=ifelse(is.na(year),NA,
+                        ifelse(is.na(surveyed),F,T)))
 ```
 
-    ## Observations: 239,949
-    ## Variables: 19
-    ## $ lon       <dbl> -122.6428, -122.6428, -122.6428, -122.6428, -122.694...
-    ## $ lat       <dbl> 45.54973, 45.54973, 45.54973, 45.54973, 45.56888, 45...
-    ## $ year.x    <int> 2008, 2008, 2008, 2008, 2005, 2005, 2007, 2008, 2008...
-    ## $ address   <chr> "3704 NE 22ND AVE", "3704 NE 22ND AVE", "3704 NE 22N...
-    ## $ name      <fct> elm, elm, elm, elm, elm, elm, elm, elm, elm, elm, el...
-    ## $ species   <chr> "Ulmus spp.", "Ulmus spp.", "Ulmus spp.", "Ulmus spp...
-    ## $ size      <fct> L, L, L, L, L, L, L, L, L, L, L, L, L, L, L, L, L, L...
-    ## $ FIPS      <dbl> 41051003200, 41051003200, 41051003200, 41051003200, ...
-    ## $ native    <lgl> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FAL...
-    ## $ group     <chr> "deciduous", "deciduous", "deciduous", "deciduous", ...
-    ## $ type      <chr> "street", "street", "street", "street", "street", "s...
-    ## $ org       <chr> "fot", "fot", "fot", "fot", "fot", "fot", "fot", "fo...
-    ## $ income    <int> 114896, 114896, 114896, 114896, 73709, 85000, 85000,...
-    ## $ inclevel  <chr> "normal", "normal", "normal", "normal", "normal", "n...
-    ## $ index     <dbl> 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5...
-    ## $ Origin.x  <chr> "planting", "planting", "planting", "planting", "pla...
-    ## $ condition <fct> Fair, Fair, Fair, Fair, NA, Good, Good, Fair, Good, ...
-    ## $ year.y    <chr> "2016", "2016", "2016", "2016", NA, "2013", "2013", ...
-    ## $ Origin.y  <chr> "survey", "survey", "survey", "survey", NA, "survey"...
+Export data sets
+----------------
 
 ``` r
-write.csv(tree_persist,"~/emergency-response-time/data/tree_persist.csv",
-          row.names=F)
+# income/tract shapefile
+shapefile(tract_inc, "~/emergency-response-time/data/tract-inc/tract_inc.shp")
+
+# planting tend tree dataset
+write.csv(trees, "~/emergency-response-time/data/trees.csv")
+
+# tree persistence dataset
+write.csv(tree_persist, "~/emergency-response-time/data/tree_persist.csv")
+
+# tree index
+write.csv(tree_index, "~/emergency-response-time/data/tree_index.csv")
 ```
