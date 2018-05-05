@@ -25,7 +25,7 @@ Raw Data
 
 -   FoT and City street tree planting data (shapefile)
 
--   2010 tree inventory data (csv)
+-   2010-2016 tree inventory data (csv)
 
 -   Median income tract data (csv)
 
