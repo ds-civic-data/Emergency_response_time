@@ -63,6 +63,8 @@ size_map <- ggplot() + map_plot +
   geom_point(data=trees, aes(x=lon,y=lat,color=factor(size,levels=c("S","M","L")),
                              fill=income),
              shape=23) +
+  geom_point(data=pts_interest,aes(x=interest_lon,y=interest_lat),color="white",
+             shape=19) +
   scale_color_manual("Size",
                      values=c("orange","yellow","green"),
                      guide=guide_legend(override.aes=list(shape=c(19,19,19)))) +
