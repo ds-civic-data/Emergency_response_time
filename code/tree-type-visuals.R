@@ -3,6 +3,13 @@ library(dplyr)
 
 trees <- read.csv("~/emergency-response-time/data/trees.csv")
 
+num <- trees %>%
+  filter(year < 2018) %>%
+  group_by(year) %>%
+  ggplot(aes(x=year)) +
+  geom_bar() +
+  labs(title="Trees Planted over Time",x="Year",y="Trees Planted")
+
 ind <- trees %>%
   filter(year < 2018) %>%
   ggplot(aes(x=year,fill=factor(index))) + 
@@ -39,6 +46,7 @@ ever <- trees %>%
        fill="Type")
 
 # export plots
+ggsave("num.png",num,path="~/emergency-response-time/documents/visuals")
 ggsave("index.png",ind, path="~/emergency-response-time/documents/visuals")
 ggsave("size.png",size, path="~/emergency-response-time/documents/visuals")
 ggsave("native.png",native, path="~/emergency-response-time/documents/visuals")
