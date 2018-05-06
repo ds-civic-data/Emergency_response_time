@@ -28,22 +28,23 @@ size <- trees %>%
 
 native <- trees %>%
   filter(year < 2018) %>%
-  ggplot(aes(x=year,fill=factor(native,levels=c("FALSE", "TRUE")))) + 
-  geom_bar(position="fill") +
-  scale_fill_manual(labels = c("Non-native","Native"),
-                    values=c("greenyellow","springgreen3")) +
-  labs(title="Native Plantings",x="Year",y="Percent of Native Species",
-       fill="Type")
-
+  group_by(year) %>%
+  mutate(n_prop = sum(native)/n()) %>%
+  ggplot(aes(x=year,y=n_prop)) +
+  geom_line() +
+  geom_point(shape=18) +
+  ylim(0,1) +
+  labs(title="Native Plantings",x="Year",y="Native Proportion")
 
 ever <- trees %>%
   filter(year < 2018) %>%
-  ggplot(aes(x=year,fill=factor(group,levels=c("deciduous", "evergreen")))) + 
-  geom_bar(position="fill") +
-  scale_fill_manual(labels = c("Deciduous","Evergreen"),
-                    values=c("greenyellow","springgreen3")) +
-  labs(title="Evergreen Plantings",x="Year",y="Percent of Total Plantings",
-       fill="Type")
+  group_by(year) %>%
+  mutate(e_prop = sum(group=="evergreen")/n()) %>%
+  ggplot(aes(x=year,y=e_prop)) +
+  geom_line() +
+  geom_point(shape=18) +
+  ylim(0,1) +
+  labs(title="Evergreen Plantings",x="Year",y="Evergreen Proportion")
 
 # export plots
 ggsave("num.png",num,path="~/emergency-response-time/documents/visuals")

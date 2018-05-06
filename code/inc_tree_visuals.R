@@ -77,14 +77,15 @@ size_map <- ggplot() + map_plot +
 native_inc <- trees %>%
   filter(year < 2018) %>%
   filter(!is.na(inclevel)) %>%
-  ggplot(aes(x=year,fill=factor(native,levels=c("FALSE", "TRUE")))) + 
-  geom_bar(position="fill") +
-  facet_grid(~ inclevel) +
-  scale_fill_manual(labels = c("Non-native","Native"),
-                    values=c("greenyellow","springgreen3")) +
+  group_by(year, inclevel) %>%
+  mutate(n_prop = sum(native)/n()) %>%
+  ggplot(aes(x=year,y=n_prop,color=inclevel)) + 
+  geom_line() +
+  geom_point(shape=18) +
+  ylim(0,1) +
   labs(title="Native Plantings, Low vs Normal Income"
-       ,x="Year",y="Percent of Native Species",
-       fill="Type")
+       ,x="Year",y="Native Proportion",
+       color="Income Level")
 
 native_map <- ggplot() + map_plot +
   geom_point(data=trees, aes(x=lon,y=lat,
@@ -104,14 +105,15 @@ native_map <- ggplot() + map_plot +
 ever_inc <- trees %>%
   filter(year < 2018) %>%
   filter(!is.na(inclevel)) %>%
-  ggplot(aes(x=year,fill=factor(group,levels=c("deciduous", "evergreen")))) + 
-  geom_bar(position="fill") +
-  facet_grid(~ inclevel) +
-  scale_fill_manual(labels = c("Deciduous","Evergreen"),
-                    values=c("greenyellow","springgreen3")) +
-  labs(title="Evergreen Plantings, Low vs Normal Income",
-       x="Year",y="Percent of Total Plantings",
-       fill="Type")
+  group_by(year, inclevel) %>%
+  mutate(n_prop = sum(group=="evergreen")/n()) %>%
+  ggplot(aes(x=year,y=n_prop,color=inclevel)) + 
+  geom_line() +
+  geom_point(shape=18) +
+  ylim(0,1) +
+  labs(title="Evergreen Plantings, Low vs Normal Income"
+       ,x="Year",y="Evergreen Proportion",
+       color="Income Level")
 
 ever_map <- ggplot() + map_plot +
   geom_point(data=trees, aes(x=lon,y=lat,
