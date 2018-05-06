@@ -34,17 +34,17 @@ pers_size <- persistence %>%
   geom_bar(position="fill") +
   labs(title="Tree Persistence by Size",x="Size",y="Proportion",fill="Persisted")
 
-pers_native <- persistence %>%
+pers_ever <- persistence %>%
   filter(!is.na(persist)) %>%
   ggplot(aes(x=group,fill=persist)) +
   geom_bar(position="fill") +
-  labs(title="Persistence of Native Trees",x="Size",y="Proportion",fill="Persisted")
+  labs(title="Persistence of Evergreen Trees",x="Size",y="Proportion",fill="Persisted")
 
-pers_ever <- persistence %>%
+pers_native <- persistence %>%
   filter(!is.na(persist)) %>%
   ggplot(aes(x=native,fill=persist)) +
   geom_bar(position="fill") +
-  labs(title="Persistence of Evergreen Trees",x="Size",y="Proportion",fill="Persisted")
+  labs(title="Persistence of Native Trees",x="Size",y="Proportion",fill="Persisted")
 
 pers_year <- persistence %>%
   filter(!is.na(persist)) %>%
