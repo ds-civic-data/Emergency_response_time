@@ -10,6 +10,21 @@ tracts <- readOGR(dsn=".", layer="tract_inc")
 
 trees <- read.csv("~/emergency-response-time/data/trees.csv")
 
+## load in road map to give context to maps
+
+setwd("~/emergency-response-time/data-raw/maj-art")
+
+roads <- readOGR(dsn=".",layer="maj_art")
+
+roads <- roads %>%
+  spTransform(CRS("+init=epsg:4326"))
+
+roadf <- fortify(roads)
+
+road_plot <- geom_path(data=roadf,aes(x=long,y=lat,group=id),col="white")
+
+##
+
 mf <- fortify(tracts, region="FIPS")
 m <- tracts@data
 
@@ -37,7 +52,7 @@ ind_inc <- trees %>%
        x="Year",y="Percent of Total Plantings",
        fill="Index Value")
 
-ind_map <- ggplot() + map_plot +
+ind_map <- ggplot() + map_plot + road_plot +
   geom_point(data=trees, aes(x=lon,y=lat,color=index,fill=income),shape=23) +
   scale_color_gradient("Index",low="red",high="chartreuse") +
   geom_point(data=pts_interest,aes(x=interest_lon,y=interest_lat),color="white",
@@ -59,7 +74,7 @@ size_inc <- trees %>%
        x="Year",y="Percent of Total Plantings",
        fill="Size")
 
-size_map <- ggplot() + map_plot +
+size_map <- ggplot() + map_plot + road_plot +
   geom_point(data=trees, aes(x=lon,y=lat,color=factor(size,levels=c("S","M","L")),
                              fill=income),
              shape=23) +
@@ -87,7 +102,7 @@ native_inc <- trees %>%
        ,x="Year",y="Native Proportion",
        color="Income Level")
 
-native_map <- ggplot() + map_plot +
+native_map <- ggplot() + map_plot + road_plot +
   geom_point(data=trees, aes(x=lon,y=lat,
                              color=factor(native,levels=c("FALSE", "TRUE")),
                              fill=income),
@@ -115,7 +130,7 @@ ever_inc <- trees %>%
        ,x="Year",y="Evergreen Proportion",
        color="Income Level")
 
-ever_map <- ggplot() + map_plot +
+ever_map <- ggplot() + map_plot + road_plot +
   geom_point(data=trees, aes(x=lon,y=lat,
                              color=factor(group,levels=c("deciduous", "evergreen")),
                              fill=income),
