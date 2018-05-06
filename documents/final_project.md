@@ -9,6 +9,7 @@ Miranda Rintoul and Lirui Jiao
 -   [Analysis](#analysis)
     -   [Tree Planting Evaluation](#tree-planting-evaluation)
     -   [Planting and Income](#planting-and-income)
+    -   [Tree Persistence](#tree-persistence)
 
 Introduction
 ============
@@ -116,3 +117,70 @@ These four visuals suggest that, though somewhat sparse, evergreen and native tr
 **Conclusions**
 
 In general, planting efforts by the city and Friends of Trees have been fairly equitable. There are a few notable areas with low median income and poor tree quality, which seem to have been caused by a disparity in tree size. Since many areas do not have room for large trees, it might be worthwhile to fill these spots with evergreen or native trees to make up for being forced to use smaller trees.
+
+Tree Persistence
+----------------
+
+While improving planting efforts is a worthwhile goal, it is equally important to ensure planted trees last a long time. We can provide some context for this question by looking at the proportion of trees from the planting dataset that have persisted long enough to be surveyed.
+
+![](visuals/pers_year.png)
+
+Unsurprisingly, older trees have lower persistence rates than newer trees.
+
+We will attempt to predict whether or not a tree will persist by studying several qualities of a tree: its size, the income level of the area where it was planted, whether it is native, and whether it is evergreen or deciduous.
+
+``` r
+persistence <- persistence %>%
+  filter(!is.na(persist))
+persist_model <- lm(persist ~ size + native + group + inclevel, data=persistence)
+
+summary(persist_model)
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = persist ~ size + native + group + inclevel, data = persistence)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -0.3995 -0.2533 -0.1439 -0.1439  0.8937 
+    ## 
+    ## Coefficients:
+    ##                 Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)     0.290841   0.008759  33.204  < 2e-16 ***
+    ## sizeM          -0.007431   0.007903  -0.940    0.347    
+    ## sizeS          -0.116835   0.007510 -15.558  < 2e-16 ***
+    ## nativeTRUE      0.108605   0.013422   8.092 6.16e-16 ***
+    ## groupevergreen -0.263079   0.027507  -9.564  < 2e-16 ***
+    ## inclevelnormal -0.030071   0.006821  -4.408 1.05e-05 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 0.401 on 23666 degrees of freedom
+    ##   (4 observations deleted due to missingness)
+    ## Multiple R-squared:  0.023,  Adjusted R-squared:  0.02279 
+    ## F-statistic: 111.4 on 5 and 23666 DF,  p-value: < 2.2e-16
+
+This initial modeling step suggests that small evergreen trees are less likely to persist. Native trees, however, are somewhat more likely to persist, and the effect income level has on persistence is extremely small. We can check these findings against visualizations of the same data.
+
+![](visuals/pers_size.png)
+
+Small trees have a noticeably smaller persistence rate compared to medium or large trees. This is very relevant to areas of the city that do not have room to plant large or medium trees.
+
+![](visuals/pers_native.png)
+
+Native trees have a higher persistance rate than non-native trees. Perhaps some tree deaths are due to environmental factors, which native trees might be more resiliant to. This might also be explained by the fact that most of the native trees in the dataset were planted fairly recently.
+
+![](visuals/pers_evergreen.png)
+
+Evergreen trees have a strikingly poor persistence rate when compared with their evergreen cousins. This is especially bad given the fact that most of the pre-survey evergreens were planted after 2000. Thus, planted evergreen trees often do not last for more than a decade.
+
+It may also be interesting to plot tree persistence against a map of Portland.
+
+![](visuals/pers_map.png)
+
+As predicted in the earlier model, there appears to be very little correlation between income level and persistence. Any trends that appear in this map are most likely explained by the planting dates of the trees.
+
+**Conclusions**
+
+More attention should be given to small and especially evergreen trees to ensure they will live for many years after planting.
