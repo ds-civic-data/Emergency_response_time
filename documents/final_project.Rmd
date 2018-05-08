@@ -93,7 +93,7 @@ Initially, it seems that index remains relatively equal across low and normal in
 
 ![](visuals/index_map.png)
 
-Mapping trees by index, however, reveals some notable areas of interest (marked in white) that were not visible before.  Two points, centered at approximately NE Martin Luther King Jr Blvd and NE Prescott St, and at NE 15th Ave and NE Dakum St (both in North Portland), are areas with relatively low income and a concentration of poor quality trees.  The areas surrounding NE 20th St and NE Siskiyou St, NE Glisan and NE Cesar Chavez Blvd, and SE Knapp St and SE 36th Ave, however, have relatively high income and a large number of good quality trees.
+Mapping trees by index, however, reveals some notable areas of interest (marked in white) that were not visible before.  Two points, centered at approximately NE 15th Ave and NE Dekum St, and at NE Martin Luther King Jr Blvd and NE Prescott St (both in North Portland), are areas with relatively low income and a concentration of poor quality trees.  The areas surrounding NE 20th St and NE Siskiyou St, NE Glisan and NE Cesar Chavez Blvd, and SE Knapp St and SE 36th Ave, however, have relatively high income and a large number of good quality trees.
 
 ![](visuals/size_inc.png)
 
