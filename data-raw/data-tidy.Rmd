@@ -158,7 +158,7 @@ trees <- trees %>%
 
 # mutate a col for income leevl
 trees <- trees %>%
-  mutate(inclevel = ifelse(income>.8*77208, "normal", "low"))
+  mutate(lowinc = ifelse(income>.8*77208, F, T))
 ```
 
 ### Make a tree index

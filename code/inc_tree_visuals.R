@@ -43,10 +43,10 @@ pts_interest <- as.data.frame(cbind(interest_lon,interest_lat))
 
 ind_inc <- trees %>%
   filter(year < 2018) %>%
-  filter(!is.na(inclevel)) %>%
+  filter(!is.na(lowinc)) %>%
   ggplot(aes(x=year,fill=factor(index))) + 
   geom_bar(position="fill") +
-  facet_grid(~ inclevel) +
+  facet_grid(~ lowinc) +
   scale_fill_brewer(palette="RdYlGn") +
   labs(title="Plantings by Tree Index, Low vs Normal Income",
        x="Year",y="Percent of Total Plantings",
@@ -65,10 +65,10 @@ ind_map <- ggplot() + map_plot + road_plot +
 
 size_inc <- trees %>%
   filter(year < 2018) %>%
-  filter(!is.na(inclevel)) %>%
+  filter(!is.na(lowinc)) %>%
   ggplot(aes(x=year,fill=factor(size,levels=c("S","M","L")))) + 
   geom_bar(position="fill") +
-  facet_grid(~ inclevel) +
+  facet_grid(~ lowinc) +
   scale_fill_brewer(palette="YlGnBu") +
   labs(title="Planting Proportions by Size, Low vs Normal Income",
        x="Year",y="Percent of Total Plantings",
@@ -91,10 +91,10 @@ size_map <- ggplot() + map_plot + road_plot +
 
 native_inc <- trees %>%
   filter(year < 2018) %>%
-  filter(!is.na(inclevel)) %>%
-  group_by(year, inclevel) %>%
+  filter(!is.na(lowinc)) %>%
+  group_by(year, lowinc) %>%
   mutate(n_prop = sum(native)/n()) %>%
-  ggplot(aes(x=year,y=n_prop,color=inclevel)) + 
+  ggplot(aes(x=year,y=n_prop,color=lowinc)) + 
   geom_line() +
   geom_point(shape=18) +
   ylim(0,1) +
@@ -119,10 +119,10 @@ native_map <- ggplot() + map_plot + road_plot +
 
 ever_inc <- trees %>%
   filter(year < 2018) %>%
-  filter(!is.na(inclevel)) %>%
-  group_by(year, inclevel) %>%
+  filter(!is.na(lowinc)) %>%
+  group_by(year, lowinc) %>%
   mutate(n_prop = sum(group=="evergreen")/n()) %>%
-  ggplot(aes(x=year,y=n_prop,color=inclevel)) + 
+  ggplot(aes(x=year,y=n_prop,color=lowinc)) + 
   geom_line() +
   geom_point(shape=18) +
   ylim(0,1) +
