@@ -38,13 +38,13 @@ pers_size <- persistence %>%
 pers_ever <- persistence %>%
   filter(!is.na(persist)) %>%
   ggplot(aes(x=group,fill=persist)) +
-  geom_bar(position="fill") +
+  geom_bar(position="fill", width=.75) +
   labs(title="Persistence of Evergreen Trees",x="Type",y="Proportion",fill="Persisted")
 
 pers_native <- persistence %>%
   filter(!is.na(persist)) %>%
   ggplot(aes(x=native,fill=persist)) +
-  geom_bar(position="fill") +
+  geom_bar(position="fill", width=.75) +
   labs(title="Persistence of Native Trees",x="Native",y="Proportion",fill="Persisted")
 
 pers_year <- persistence %>%
