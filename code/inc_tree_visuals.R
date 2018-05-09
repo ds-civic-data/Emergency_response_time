@@ -143,6 +143,17 @@ ever_map <- ggplot() + map_plot + road_plot +
   ylim(45.46, 45.605) +
   labs(title="Evergreen PDX Trees",x="Longitude",y="Latitude")
 
+## scatterplot
+
+ind_scatter <- trees %>%
+  filter(year < 2018) %>%
+  group_by(FIPS) %>%
+  mutate(avg_inc=mean(income), avg_index=mean(index)) %>%
+  ggplot(aes(x=avg_inc,y=avg_index)) +
+  geom_point() +
+  labs(title="Average Income vs Average Tree Index",
+       x="Average Income (by census tract)", y="Average Tree Index")
+
 
 ### export maps
 ggsave("index_inc.png",ind_inc, path="~/emergency-response-time/documents/visuals")
@@ -161,5 +172,7 @@ ggsave("evergreen_inc.png",ever_inc,
 ggsave("evergreen_map.png",ever_map,
       path="~/emergency-response-time/documents/visuals")
 
+ggsave("ind_scatter.png", ind_scatter,
+       path="~/emergency-response-time/documents/visuals")
 
 
