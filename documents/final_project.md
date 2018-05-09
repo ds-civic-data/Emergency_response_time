@@ -6,6 +6,7 @@ Miranda Rintoul and Lirui Jiao
 -   [Data](#data)
     -   [Raw data](#raw-data)
     -   [Transformation](#transformation)
+    -   [Sources](#sources)
 -   [Analysis](#analysis)
     -   [Tree Planting Evaluation](#tree-planting-evaluation)
     -   [Planting and Income](#planting-and-income)
@@ -28,7 +29,7 @@ We began with four datasets:
 
 -   A database of tree plantings done by the City of Portland and Friends of trees. The data covers years 1989-2018 and contains information on the locations of the properties where these trees were planted.
 
--   A recent survey of street trees conducted by ?????. It covers the years 2010-2016 and describes the condition of all the trees surveyed.
+-   A recent survey of street trees conducted by Portland Parks & Recreation. It covers the years 2010-2016 and describes the condition of all the trees surveyed.
 
 -   A spatial dataset of Portland census tracts. We will be studying income on the census tract level, and we will use this data to make informative maps of the city.
 
@@ -48,6 +49,17 @@ where *Q* is the overall quality of a tree, *S* is the tree's size, *N* depends 
 After that, we created a new tree dataset by combining the planting and survey data. We joined these two datasets by address and by species, and noted whether or not each observation that existed in the planting dataset was also in the survey.
 
 A more detailed description of the data transforming process can be found [here](https://github.com/ds-civic-data/pdx-tree-planting/blob/master/data-raw/data-tidy.md).
+
+Sources
+-------
+
+Portland Parks & Recreation Urban Forestry. All Trees 3/2018 Species (accessed Apr 10 2018).
+
+Portland Parks & Recreation Urban Forestry. Street Trees (accessed Apr 30 2018).
+
+U.S. Census Bureau. Census Tracts 2010. Prepared by RLIS Discovery. <http://rlisdiscovery.oregonmetro.gov/?action=viewDetail&layerID=2588> (accessed Apr 10 2018).
+
+U.S. Census Bureau. Median Family Income (In 2015 Inflation Adjusted Dollars), ACS 2015 (5-Year Estimates). Prepared by Social Explorer. <https://www.socialexplorer.com/tables/ACS2015_5yr/R11672838> (accessed Apr 20 2018).
 
 Analysis
 ========
