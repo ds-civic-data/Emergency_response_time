@@ -1,4 +1,5 @@
 library(tidyverse)
+library(plotly)
 library(ggmap)
 library(rgdal)
 library(sp)
@@ -75,7 +76,7 @@ ggsave("pers_size.png",pers_size, path="~/emergency-response-time/documents/visu
 ggsave("pers_native.png",pers_native, 
        path="~/emergency-response-time/documents/visuals")
 ggsave("pers_evergreen.png",pers_ever, 
-       path="~/emergency-response-time/documents/visuals")
+       path="~/emergency-response-time/documents/visuals", width=6, height=5)
 
 ggsave("pers_map.png",pers_map, path="~/emergency-response-time/documents/visuals")
 
