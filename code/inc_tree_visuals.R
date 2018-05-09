@@ -53,7 +53,8 @@ ind_inc <- trees %>%
        fill="Index Value")
 
 ind_map <- ggplot() + map_plot + road_plot +
-  geom_point(data=trees, aes(x=lon,y=lat,color=index,fill=income),shape=23) +
+  geom_point(data=trees, aes(x=lon,y=lat,color=index,fill=income),shape=3,
+             alpha=.1) +
   scale_color_gradient("Index",low="red",high="chartreuse") +
   geom_point(data=pts_interest,aes(x=interest_lon,y=interest_lat),color="white",
              shape=19) +
@@ -77,12 +78,12 @@ size_inc <- trees %>%
 size_map <- ggplot() + map_plot + road_plot +
   geom_point(data=trees, aes(x=lon,y=lat,color=factor(size,levels=c("S","M","L")),
                              fill=income),
-             shape=23) +
+             shape=3, alpha=.1) +
   geom_point(data=pts_interest,aes(x=interest_lon,y=interest_lat),color="white",
              shape=19) +
   scale_color_manual("Size",
                      values=c("orange","yellow","green"),
-                     guide=guide_legend(override.aes=list(shape=c(19,19,19)))) +
+                     guide=guide_legend(override.aes=list(alpha=1))) +
   xlim(-122.75, -122.495) +
   ylim(45.46, 45.605) +
   labs(title="PDX Trees by Size",x="Longitude",y="Latitude")
@@ -106,11 +107,11 @@ native_map <- ggplot() + map_plot + road_plot +
   geom_point(data=trees, aes(x=lon,y=lat,
                              color=factor(native,levels=c("FALSE", "TRUE")),
                              fill=income),
-             shape=23) +
+             shape=3, alpha=.1) +
   scale_color_manual("Type",
                      values=c("orange","green"),
                      labels=c("Non-native","Native"),
-                     guide=guide_legend(override.aes=list(shape=c(19,19)))) +
+                     guide=guide_legend(override.aes=list(alpha=1))) +
   xlim(-122.75, -122.495) +
   ylim(45.46, 45.605) +
   labs(title="Native PDX Trees",x="Longitude",y="Latitude")
@@ -134,11 +135,11 @@ ever_map <- ggplot() + map_plot + road_plot +
   geom_point(data=trees, aes(x=lon,y=lat,
                              color=factor(group,levels=c("deciduous", "evergreen")),
                              fill=income),
-             shape=23) +
+             shape=3,alpha=.1) +
   scale_color_manual("Type",
                      values=c("orange","green"),
                      labels=c("Deciduous","Evergreen"),
-                     guide=guide_legend(override.aes=list(shape=c(19,19)))) +
+                     guide=guide_legend(override.aes=list(alpha=1))) +
   xlim(-122.75, -122.495) +
   ylim(45.46, 45.605) +
   labs(title="Evergreen PDX Trees",x="Longitude",y="Latitude")
