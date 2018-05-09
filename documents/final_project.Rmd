@@ -167,7 +167,7 @@ As predicted in the earlier model, there appears to be very little correlation b
 
 **Conclusions**
 
-More attention should be given to small and especially evergreen trees to ensure they will live for many years after planting.  
+Large, deciduous trees have the best persistence rate, while small evergreen trees have the worst.  More attention should be given to evergreens in particular to ensure they will live for many years after planting.  
 
 
 
