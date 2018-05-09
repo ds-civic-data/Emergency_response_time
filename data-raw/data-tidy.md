@@ -181,7 +181,7 @@ trees <- trees %>%
 
 # mutate a col for income leevl
 trees <- trees %>%
-  mutate(lowinc = ifelse(income>.8*77208, F, T))
+  mutate(inclevel = ifelse(income>.8*77208, "mid-high", "low"))
 ```
 
 ### Make a tree index
@@ -254,7 +254,8 @@ Export data sets
 
 ``` r
 # income/tract shapefile
-shapefile(tract_inc, "~/emergency-response-time/data/tract-inc/tract_inc.shp")
+shapefile(tract_inc, "~/emergency-response-time/data/tract-inc/tract_inc.shp",
+          overwrite=T)
 
 # planting tend tree dataset
 write.csv(trees, "~/emergency-response-time/data/trees.csv")
