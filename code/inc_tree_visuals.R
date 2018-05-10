@@ -98,7 +98,7 @@ native_inc <- trees %>%
   ggplot(aes(x=year,y=n_prop,color=inclevel)) + 
   geom_line() +
   geom_point(shape=18) +
-  ylim(0,1) +
+  ylim(0,.4) +
   labs(title="Native Plantings, Low vs Normal Income"
        ,x="Year",y="Native Proportion",
        color="Income Level")
@@ -126,7 +126,7 @@ ever_inc <- trees %>%
   ggplot(aes(x=year,y=n_prop,color=inclevel)) + 
   geom_line() +
   geom_point(shape=18) +
-  ylim(0,1) +
+  ylim(0,.3) +
   labs(title="Evergreen Plantings, Low vs Normal Income"
        ,x="Year",y="Evergreen Proportion",
        color="Income Level")
