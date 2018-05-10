@@ -1,6 +1,6 @@
 # pdx-tree-planting
 
-We will be studying trends in Portland street tree plantings.
+We will be studying trends in Portland street tree plantings done by [Urban Forestry](https://www.portlandoregon.gov/parks/38294) and [Friends of Trees](https://friendsoftrees.org/).
 
 ### Authors
 
