@@ -3,8 +3,10 @@ library(plotly)
 library(ggmap)
 library(rgdal)
 library(sp)
+library(reshape)
 library(raster)
 library(RColorBrewer)
+library(MASS)
 
 persistence <- read.csv("~/emergency-response-time/data/tree_persist.csv")
 
@@ -35,6 +37,13 @@ pers_size <- persistence %>%
   geom_bar(position="fill") +
   labs(title="Tree Persistence by Size",x="Size",y="Proportion",fill="Persisted")
 
+pers_condition <- persistence %>%
+  filter(persist==T) %>%
+  ggplot(aes(x=condition)) +
+  geom_bar()
+
+
+
 pers_ever <- persistence %>%
   filter(!is.na(persist)) %>%
   ggplot(aes(x=group,fill=persist)) +
@@ -58,17 +67,29 @@ pers_year <- persistence %>%
   labs(title="Proportion of Persistent Trees by Year",x="Year",y="Proportion")
 
 ## map persistence
-persistence_tidy <- persistence %>%
-  filter(!is.na(persist))
-pers_map <- ggplot() + map_plot + road_plot +
-  geom_point(data=persistence_tidy, aes(x=lon,y=lat,color=persist, fill=income),
-             shape=23) +
-  scale_color_manual("Persisted",
-                     values=c("orange","green"),
-                     guide=guide_legend(override.aes=list(shape=c(19,19)))) +
-  xlim(-122.75, -122.495) +
-  ylim(45.46, 45.605) +
-  labs(title="Persistent PDX Trees",x="Longitude",y="Latitude")
+#persistence_tidy <- persistence %>%
+#  filter(!is.na(persist))
+#pers_map <- ggplot() + map_plot + road_plot +
+#  geom_point(data=persistence_tidy, aes(x=lon,y=lat,color=persist, fill=income),
+#             shape=23) +
+#  scale_color_manual("Persisted",
+#                     values=c("orange","green"),
+#                     guide=guide_legend(override.aes=list(shape=c(19,19)))) +
+#  xlim(-122.75, -122.495) +
+#  ylim(45.46, 45.605) +
+#  labs(title="Persistent PDX Trees",x="Longitude",y="Latitude")
+
+#persisted <- persistence %>%
+#  filter(!is.na(condition)) %>%
+#  filter(persist==T)
+
+#ggplot() + map_plot + road_plot +
+#  geom_point(data=persisted, aes(x=lon,y=lat,color=condition, fill=income),
+#             shape=23) +
+#  scale_color_manual("Condition",
+#                    values=c("yellow","green","orange"),
+#                     guide=guide_legend(override.aes=list(shape=c(19,19,19)))) +
+#  xlim(-122.75, -122.495) + ylim(45.46, 45.605)
 
 ### export images
 ggsave("pers_year.png",pers_year, path="~/emergency-response-time/documents/visuals")
@@ -78,7 +99,7 @@ ggsave("pers_native.png",pers_native,
 ggsave("pers_evergreen.png",pers_ever, 
        path="~/emergency-response-time/documents/visuals", width=6, height=5)
 
-ggsave("pers_map.png",pers_map, path="~/emergency-response-time/documents/visuals")
+#ggsave("pers_map.png",pers_map, path="~/emergency-response-time/documents/visuals")
 
 
 

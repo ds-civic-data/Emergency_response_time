@@ -95,51 +95,53 @@ Similarly, though the proportion has been rising, evergreen trees make up only a
 
 **Conclusions**
 
-Though the quality of planted trees has been steadily increasing, there is still room for improvement. There is a healthy mix of different sizes of trees, but very small numbers of evergreen and native trees.
+The quality of planted trees has been steadily increasing in the past few decades. There is a fairly even distribution of large, small, and medium trees, but only a small proportion of trees are native to Portland or evergreen.
 
 Planting and Income
 -------------------
 
 We will attempt to address the issue of planting equity by building charts and maps. As before, we will focus on the index, size, native, and evergreen variables to assess tree quality.
 
-The HUD defines "low income" as having a median income that is less than 80% of the greater Portland median income. We will be studying income levels on the census tract level.
+The [HUD](https://www.hud.gov/program_offices/comm_planning/library/glossary/l#lowincome) defines "low income" as having a median income that is less than 80% of the median income for the region - for us, this is the greater Portland area. We will be studying income on the census tract level.
 
-<img src="visuals/index_inc.png" width="500">
+<img src="visuals/index_inc.png" height="400">
 
-Initially, it seems that index remains relatively equal across low and normal income areas. Planting in low income areas started out poor, but got better over time, while planting in normal income areas has remained somewhat more stable.
+<img src="visuals/ind_scatter.png" width="500">
 
-<img src="visuals/index_map.png" width="500">
+Initially, it seems that index remains relatively equal across low and mid-high income areas.
 
-Mapping trees by index, however, reveals some notable areas of interest (marked in white) that were not visible before. Two points, centered at approximately NE 15th Ave and NE Dekum St, and at NE Martin Luther King Jr Blvd and NE Prescott St (both in North Portland), are areas with relatively low income and a concentration of poor quality trees. The areas surrounding NE 20th St and NE Siskiyou St, NE Glisan and NE Cesar Chavez Blvd, and SE Knapp St and SE 36th Ave, however, have relatively high income and a large number of good quality trees.
+<img src="visuals/index_map.png" width="700">
 
-<img src="visuals/size_inc.png" width="500">
+Mapping trees by index, however, reveals some notable areas of interest (marked in white) that were not visible before. Two points, centered at approximately NE 15th Ave and NE Dekum St, and at NE Martin Luther King Jr Blvd and NE Prescott St (both in Northeast Portland), are areas with relatively low income and a concentration of poor quality trees. The areas surrounding NE 20th St and NE Siskiyou St, NE Glisan and NE Cesar Chavez Blvd, and SE Knapp St and SE 36th Ave, however, have relatively high income and a large number of good quality trees.
+
+<img src="visuals/size_inc.png" height="400">
 
 Over time, the proportions of small and large trees has remained fairly similar across different income areas.
 
-<img src="visuals/size_map.png" width="500">
+<img src="visuals/size_map.png" width="700">
 
-This map suggests that tree size might account for the disparity between the points of interest uncovered by the index map. Perhaps some of these areas do not have room for very large trees.
+This map suggests that tree size might account for the disparity between the points of interest uncovered by the index map.
 
 <img src="visuals/native_inc.png" width="500">
 
-<img src="visuals/native_map.png" width="500">
+<img src="visuals/native_map.png" width="700">
 
 <img src="visuals/evergreen_inc.png" width="500">
 
-<img src="visuals/evergreen_map.png" width="500">
+<img src="visuals/evergreen_map.png" width="700">
 
 These four visuals suggest that, though somewhat sparse, evergreen and native trees are dispersed fairly evenly across the city.
 
 **Conclusions**
 
-In general, planting efforts by the city and Friends of Trees have been fairly equitable. There are a few notable areas with low median income and poor tree quality, which seem to have been caused by a disparity in tree size. Since many areas do not have room for large trees, it might be worthwhile to fill these spots with evergreen or native trees to make up for being forced to use smaller trees.
+In general, planting efforts by the city and Friends of Trees have been fairly equitable. There are a few notable areas with low median income and poor tree quality, which may have been caused by a disparity in tree size.
 
 Tree Persistence
 ----------------
 
-While improving planting efforts is a worthwhile goal, it is equally important to ensure planted trees last a long time. We can provide some context for this question by looking at the proportion of trees from the planting dataset that have persisted long enough to be surveyed.
+Our next goal is to figure out which trees last a long time after being planted. A tree is defined as "persistent" if it appears in the planting dataset before 2010, and also is listed in the 2010-2016 tree survey. We can provide some context for this question by looking at the proportion of trees from the planting dataset that have persisted long enough to be surveyed.
 
-![](visuals/pers_year.png)
+<img src="visuals/pers_year.png" width="500">
 
 Unsurprisingly, older trees have lower persistence rates than newer trees.
 
@@ -179,24 +181,18 @@ summary(persist_model)
 
 This initial modeling step suggests that small evergreen trees are less likely to persist. Native trees, however, are somewhat more likely to persist, and the effect income level has on persistence is extremely small. We can check these findings against visualizations of the same data.
 
-![](visuals/pers_size.png)
+<img src="visuals/pers_year.png" width="500">
 
-Small trees have a noticeably smaller persistence rate compared to medium or large trees. This is very relevant to areas of the city that do not have room to plant large or medium trees.
+Small trees have a noticeably smaller persistence rate compared to medium or large trees. This may be relevant to areas of the city that do not have room to plant large or medium trees.
 
-![](visuals/pers_native.png)
+<img src="visuals/pers_native.png" width="500">
 
-Native trees have a higher persistance rate than non-native trees. Perhaps some tree deaths are due to environmental factors, which native trees might be more resiliant to. This might also be explained by the fact that most of the native trees in the dataset were planted fairly recently.
+Native trees have a somewhat higher persistance rate than non-native trees.
 
-![](visuals/pers_evergreen.png)
+<img src="visuals/pers_evergreen.png" width="500">
 
-Evergreen trees have a strikingly poor persistence rate when compared with their evergreen cousins. This is especially bad given the fact that most of the pre-survey evergreens were planted after 2000. Thus, planted evergreen trees often do not last for more than a decade.
-
-It may also be interesting to plot tree persistence against a map of Portland.
-
-![](visuals/pers_map.png)
-
-As predicted in the earlier model, there appears to be very little correlation between income level and persistence. Any trends that appear in this map are most likely explained by the planting dates of the trees.
+Evergreen trees have a strikingly poor persistence rate when compared with their evergreen cousins. Given the fact that many pre-survey evergreens were planted after 2000, this shows that planted evergreen trees often do not last for more than a decade.
 
 **Conclusions**
 
-Large, deciduous trees have the best persistence rate, while small evergreen trees have the worst. More attention should be given to evergreens in particular to ensure they will live for many years after planting.
+Large, deciduous trees have the best persistence rate, while small evergreen trees have the worst. There appears to be very little relationship between income and persistence.
