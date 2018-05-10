@@ -99,7 +99,7 @@ native_inc <- trees %>%
   ggplot(aes(x=year,y=n_prop,color=inclevel)) + 
   geom_line() +
   geom_point(shape=18) +
-  ylim(0,.3) +
+  ylim(0,.4) +
   labs(title="Native Plantings, Low vs Normal Income"
        ,x="Year",y="Native Proportion",
        color="Income Level") + coord_fixed(50)
@@ -127,7 +127,7 @@ ever_inc <- trees %>%
   ggplot(aes(x=year,y=n_prop,color=inclevel)) + 
   geom_line() +
   geom_point(shape=18) +
-  ylim(0,.3) +
+  ylim(0,.4) +
   labs(title="Evergreen Plantings, Low vs Normal Income"
        ,x="Year",y="Evergreen Proportion",
        color="Income Level") + coord_fixed(50)
@@ -158,7 +158,7 @@ ind_scatter <- trees %>%
 
 
 
-native_ever_inc <- grid.arrange(native_inc,ever_inc,ncol=2)
+grid.arrange(native_inc,ever_inc,ncol=2)
 
 
 ### export maps
@@ -168,12 +168,13 @@ ggsave("index_map.png",ind_map, path="~/emergency-response-time/documents/visual
 ggsave("size_inc.png",size_inc, path="~/emergency-response-time/documents/visuals")
 ggsave("size_map.png",size_map, path="~/emergency-response-time/documents/visuals")
 
-ggsave("native_ever_inc.png", native_ever_inc, 
-       path="~/emergency-response-time/documents/visuals")
-
+ggsave("native_inc.png",native_inc, 
+      path="~/emergency-response-time/documents/visuals")
 ggsave("native_map.png",native_map, 
       path="~/emergency-response-time/documents/visuals")
 
+ggsave("evergreen_inc.png",ever_inc, 
+      path="~/emergency-response-time/documents/visuals")
 ggsave("evergreen_map.png",ever_map,
       path="~/emergency-response-time/documents/visuals")
 
