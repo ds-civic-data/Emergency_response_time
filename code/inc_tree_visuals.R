@@ -50,7 +50,7 @@ ind_inc <- trees %>%
   scale_fill_brewer(palette="RdYlGn") +
   labs(title="Plantings by Tree Index, Low vs Normal Income",
        x="Year",y="Percent of Total Plantings",
-       fill="Index Value")
+       fill="Index Value") + coord_fixed(50)
 
 ind_map <- ggplot() + map_plot + road_plot +
   geom_point(data=trees, aes(x=lon,y=lat,color=index,fill=income),shape=3,
@@ -73,7 +73,7 @@ size_inc <- trees %>%
   scale_fill_brewer(palette="YlGnBu") +
   labs(title="Planting Proportions by Size, Low vs Normal Income",
        x="Year",y="Percent of Total Plantings",
-       fill="Size")
+       fill="Size") + coord_fixed(45)
 
 size_map <- ggplot() + map_plot + road_plot +
   geom_point(data=trees, aes(x=lon,y=lat,color=factor(size,levels=c("S","M","L")),
