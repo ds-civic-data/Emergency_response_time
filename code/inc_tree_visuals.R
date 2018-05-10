@@ -101,7 +101,7 @@ native_inc <- trees %>%
   ylim(0,.4) +
   labs(title="Native Plantings, Low vs Normal Income"
        ,x="Year",y="Native Proportion",
-       color="Income Level")
+       color="Income Level") + coord_fixed(50)
 
 native_map <- ggplot() + map_plot + road_plot +
   geom_point(data=trees, aes(x=lon,y=lat,
@@ -129,7 +129,7 @@ ever_inc <- trees %>%
   ylim(0,.3) +
   labs(title="Evergreen Plantings, Low vs Normal Income"
        ,x="Year",y="Evergreen Proportion",
-       color="Income Level")
+       color="Income Level") + coord_fixed(50)
 
 ever_map <- ggplot() + map_plot + road_plot +
   geom_point(data=trees, aes(x=lon,y=lat,
